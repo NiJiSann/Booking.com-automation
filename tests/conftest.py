@@ -15,9 +15,13 @@ def driver():
     options.add_argument('--no-sandbox')
     options.add_argument("--window-size=1920,1080")
     options.add_argument('--disable-dev-shm-usage')
+    options.add_argument("--disable-web-security")
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_experimental_option("excludeSwitches", ['enable-automation'])
     download_path = r'downloads'
     prefs = {
         "download.default_directory": download_path,
+        'intl.accept_languages': 'en'
     }
     options.add_experimental_option('prefs', prefs)
     driver = webdriver.Chrome(options=options, service=service)
@@ -34,14 +38,19 @@ def cross_driver(request):
         options.add_argument('--headless')
         options.add_argument("--window-size=1920,1080")
         options.add_argument('--disable-dev-shm-usage')
+        options.add_argument("--disable-web-security")
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        options.add_experimental_option("excludeSwitches", ['enable-automation'])
         driver = webdriver.Chrome(options=options)
 
     elif request.param == "firefox":
-        options = webdriver.EdgeOptions()
+        options = webdriver.FirefoxOptions()
         options.add_argument('--no-sandbox')
         options.add_argument('--headless')
         options.add_argument("--window-size=1920,1080")
         options.add_argument('--disable-dev-shm-usage')
+        options.add_argument("--disable-web-security")
+        options.add_argument("--disable-blink-features=AutomationControlled")
         driver = webdriver.Firefox(options=options)
 
     yield driver
