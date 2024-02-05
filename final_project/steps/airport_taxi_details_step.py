@@ -10,7 +10,7 @@ class AirportTaxiDetailsStep(MyCommonActions, AirportTaxiDetailsPage):
         self.click(self.SECOND_CAR_TYPE)
 
     def add_request_child_seat(self):
-        self.go_to_element(self.ADD_REQUEST_CHILD_SEAT)
+        self.scroll_to_elem(self.ADD_REQUEST_CHILD_SEAT)
         self.click(self.ADD_REQUEST_CHILD_SEAT)
         self.click(self.PLUS_CHILD_SEAT)
         self.click(self.CONFIRM_BTN_CHILD_SEAT)
@@ -22,13 +22,13 @@ class AirportTaxiDetailsStep(MyCommonActions, AirportTaxiDetailsPage):
             return False
 
     def add_comment_for_driver(self, comment):
-        self.go_to_element(self.COMMENT_TEXT_ARIA)
+        self.scroll_to_elem(self.COMMENT_TEXT_ARIA)
         self.fill(self.COMMENT_TEXT_ARIA, comment)
 
     def comment_value(self):
         return self.get_value_element(self.COMMENT_TEXT_ARIA)
 
     def click_continue_button(self):
-        self.go_to_element(self.CONTINUE_BTN)
+        self.scroll_to_elem(self.CONTINUE_BTN)
         self.click(self.CONTINUE_BTN)
         time.sleep(2)
