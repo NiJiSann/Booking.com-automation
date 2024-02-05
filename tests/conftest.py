@@ -4,6 +4,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+import pickle
 
 
 @pytest.fixture(scope="session")
@@ -11,7 +12,7 @@ def driver():
     service = Service(executable_path=ChromeDriverManager().install())
     options = webdriver.ChromeOptions()
     options.add_experimental_option('detach', True)
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument("--window-size=1920,1080")
     options.add_argument('--disable-dev-shm-usage')
@@ -26,6 +27,8 @@ def driver():
     options.add_experimental_option('prefs', prefs)
     driver = webdriver.Chrome(options=options, service=service)
     yield driver
+    with open('login_cookies', 'wb') as filehandler:
+        pickle.dump(driver.get_cookies(), filehandler)
     driver.quit()
 
 
