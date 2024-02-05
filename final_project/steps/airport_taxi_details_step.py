@@ -15,10 +15,20 @@ class AirportTaxiDetailsStep(MyCommonActions, AirportTaxiDetailsPage):
         self.click(self.PLUS_CHILD_SEAT)
         self.click(self.CONFIRM_BTN_CHILD_SEAT)
 
+    def child_car_seat(self):
+        if self.find(self.CHILD_CAR_SEAT):
+            return True
+        else:
+            return False
+
     def add_comment_for_driver(self, comment):
         self.go_to_element(self.COMMENT_TEXT_ARIA)
         self.fill(self.COMMENT_TEXT_ARIA, comment)
 
+    def comment_value(self):
+        return self.get_value_element(self.COMMENT_TEXT_ARIA)
+
     def click_continue_button(self):
         self.go_to_element(self.CONTINUE_BTN)
         self.click(self.CONTINUE_BTN)
+        time.sleep(2)
