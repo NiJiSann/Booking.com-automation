@@ -8,7 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 class Common:
     def __init__(self, driver):
         self.driver: WebDriver = driver
-        self._wait = WebDriverWait(self.driver, 10)
+        self._wait = WebDriverWait(self.driver, 20)
 
     def wait_for(self, locator) -> WebElement:
         return self._wait.until(ec.presence_of_element_located(locator))

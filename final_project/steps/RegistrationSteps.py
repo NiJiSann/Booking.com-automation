@@ -8,6 +8,7 @@ from final_project.steps.common_actions import Common
 
 class RegistrationSteps(Common):
     def open_registration(self):
+        time.sleep(1)
         self.click(cp.REGISTER)
 
     def fill_email(self, email: str):

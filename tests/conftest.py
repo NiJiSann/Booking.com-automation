@@ -12,7 +12,7 @@ def driver():
     service = Service(executable_path=ChromeDriverManager().install())
     options = webdriver.ChromeOptions()
     options.add_experimental_option('detach', True)
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument("--window-size=1920,1080")
     options.add_argument('--disable-dev-shm-usage')
@@ -35,7 +35,7 @@ def driver():
 def driver_undetected():
     options = {
         'undetectable': True,
-        'headless': True
+        'headless': False
     }
     m_driver = Driver(**options)
 
