@@ -12,4 +12,4 @@ class CommonPage:
     CURRENCY_PICKER = (By.XPATH, '//a[@data-testid = "header-currency-picker-trigger"]')
     YOUR_ACCOUNT = (By.XPATH, '//a[@data-testid = "header-profile"]')
     SAVED = (By.XPATH, '//*[@id=":rc:"]/div/div/div/div/ul/li[6]')
-
+    MANAGE_ACCOUNT = (By.XPATH, '//*[@id=":rc:"]/div/div/div/div/ul/li[1]')
