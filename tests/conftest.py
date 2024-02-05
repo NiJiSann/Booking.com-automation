@@ -84,5 +84,6 @@ def pytest_runtest_makereport(item, call):
             now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             filename = f'{item.nodeid}_{now}.png'.replace('/', '_').replace('::', '__')
             allure.attach(driver.get_screenshot_as_png(), name=filename, attachment_type=allure.attachment_type.PNG)
+            allure.attach(driver.page_source, name='source HTML', attachment_type=allure.attachment_type.HTML)
         except:
             pass

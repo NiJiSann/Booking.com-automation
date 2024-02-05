@@ -58,6 +58,7 @@ class ChangeCurrencySteps(Common):
             input_loc.send_keys(Keys.ENTER)
         except:
             pass
+        time.sleep(1)
         self.click(ccp.SEARCH_CAR)
         try:
             self.wait_for(ccp.CAR_PRICE)
@@ -85,6 +86,7 @@ class ChangeCurrencySteps(Common):
         except:
             pass
         self.click(ccp.SEARCH_TAXI)
+        time.sleep(1)
         try:
             self.wait_for(ccp.TAXI_PRICE)
         except:
@@ -107,6 +109,7 @@ class ChangeCurrencySteps(Common):
             pass
 
         self.click(ccp.SEARCH_FLIGHT)
+        time.sleep(5)
         try:
             self.wait_for(ccp.FLIGHT_PRICE)
         except:
