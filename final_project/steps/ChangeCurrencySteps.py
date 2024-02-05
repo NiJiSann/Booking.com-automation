@@ -29,7 +29,8 @@ class ChangeCurrencySteps(Common):
         time.sleep(2)
         input_loc.send_keys(Keys.ENTER)
         time.sleep(1)
-        price = self.wait_for(ccp.STAY_PRICE).text.replace('.', '')
+        self.wait_for(ccp.STAY_PRICE)
+        price = self.get_text(ccp.STAY_PRICE).replace('.', '')
         price = re.sub(r'\d', '', price)
         return price
 
@@ -46,16 +47,17 @@ class ChangeCurrencySteps(Common):
     def get_car_rental_price_currency(self) -> str:
         time.sleep(1)
         self.click(cp.CAR_RENTAL)
-        time.sleep(1)
         input_loc = self.wait_for(ccp.PICK_UP_LOCATION_INPUT)
         input_loc.click()
-        time.sleep(1)
         input_loc.send_keys('Florida')
-        time.sleep(4)
+        time.sleep(2)
         input_loc.send_keys(Keys.ENTER)
         self.click(ccp.SEARCH_CAR)
-        time.sleep(2)
-        price = self.wait_for(ccp.CAR_PRICE).text.replace('.', '')
+        try:
+            self.wait_for(ccp.CAR_PRICE)
+        except:
+            pass
+        price = self.get_text(ccp.CAR_PRICE).replace('.', '')
         price = re.sub(r'\d', '', price)
         return price
 
@@ -73,26 +75,33 @@ class ChangeCurrencySteps(Common):
         input_dest.send_keys('Shibuya')
         time.sleep(2)
         input_dest.send_keys(Keys.ENTER)
-        time.sleep(1)
         self.click(ccp.SEARCH_TAXI)
-        time.sleep(2)
-        price = self.wait_for(ccp.TAXI_PRICE).text.replace('.', '')
+        try:
+            self.wait_for(ccp.TAXI_PRICE)
+        except:
+            pass
+        price = self.get_text(ccp.TAXI_PRICE).replace('.', '')
         price = re.sub(r'\d', '', price)
         return price
 
     def get_flight_price_currency(self) -> str:
         time.sleep(1)
         self.click(cp.FLIGHTS)
-        time.sleep(2)
-        self.click(ccp.TO_HOLDER)
-        time.sleep(2)
-        input_loc = self.wait_for(ccp.TO_INPUT)
-        input_loc.clear()
-        input_loc.send_keys('Tokyo')
-        time.sleep(4)
-        input_loc.send_keys(Keys.ENTER)
-        time.sleep(1)
+        try:
+            self.click(ccp.TO_HOLDER)
+            input_loc = self.wait_for(ccp.TO_INPUT)
+            input_loc.clear()
+            input_loc.send_keys('Tokyo')
+            time.sleep(2)
+            input_loc.send_keys(Keys.ENTER)
+        except:
+            pass
+
         self.click(ccp.SEARCH_FLIGHT)
-        price = self.wait_for(ccp.FLIGHT_PRICE).text.replace('.', '')
+        try:
+            self.wait_for(ccp.FLIGHT_PRICE)
+        except:
+            pass
+        price = self.get_text(ccp.FLIGHT_PRICE).replace('.', '')
         price = re.sub(r'\d', '', price)
         return price
