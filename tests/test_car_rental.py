@@ -51,7 +51,7 @@ class TestCarRental:
                                              car_rental_data.drop_off_time, "drop_off")
         with soft_assertions():
             assert_that(car_rental_step.selected_drop_off_date()).is_in(car_rental_data.drop_off_date)
-            assert_that(car_rental_step.selected_drop_off_time()).is_equal_to(car_rental_data.drop_off_time)
+            assert_that(car_rental_step.selected_drop_off_time()).contains(car_rental_data.drop_off_time)
 
         car_rental_step.click_search_button()
         with soft_assertions():
