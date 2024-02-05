@@ -9,6 +9,7 @@ ua = UserAgent()
 
 
 def pytest_addoption(parser):
+    # Parameters passed to the command line when running test
     parser.addoption("--mode", action="store", help="Choose mode run (ci, local)", default="local")
 
 
@@ -18,6 +19,7 @@ def driver(request):
     service = Service(executable_path=ChromeDriverManager().install())
     options = webdriver.ChromeOptions()
     options.add_experimental_option('detach', True)
+    # Change run mode
     if mode == "ci":
         options.add_argument('--headless')
     options.add_argument('--no-sandbox')
@@ -44,7 +46,7 @@ def cross_driver(request):
     if request.param == "chrome":
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
-        # options.add_argument('--headless')
+        options.add_argument('--headless')
         options.add_argument("--window-size=1920,1080")
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument("--disable-web-security")
