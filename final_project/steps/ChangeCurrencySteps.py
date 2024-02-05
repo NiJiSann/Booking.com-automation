@@ -50,18 +50,15 @@ class ChangeCurrencySteps(Common):
     def get_car_rental_price_currency(self, match) -> str:
         time.sleep(1)
         self.click(cp.CAR_RENTAL)
+        time.sleep(1)
         input_loc = self.wait_for(ccp.PICK_UP_LOCATION_INPUT)
-        input_loc.click()
         input_loc.send_keys('Florida')
         time.sleep(2)
         input_loc.send_keys(Keys.ENTER)
         time.sleep(1)
         self.click(ccp.SEARCH_CAR)
-        try:
-            self.wait_for(ccp.CAR_PRICE)
-        except:
-            pass
-        source =  self.driver.page_source
+        time.sleep(10)
+        source = self.driver.page_source
         if source.__contains__(match[0]) or source.__contains__(match[1]):
             return 'Currencies are matching'
         return 'Currencies are not matching'
