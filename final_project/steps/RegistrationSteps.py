@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver import Keys
 from final_project.pages.RegistrationPage import RegistrationPage as rp
 from final_project.pages.CommopPage import CommonPage as cp
@@ -10,8 +12,11 @@ class RegistrationSteps(Common):
 
     def fill_email(self, email: str):
         elem = self.find(rp.EMAIL_INPUT)
+        elem.send_keys(Keys.CONTROL + 'A')
         if elem.text != '':
             elem.send_keys(Keys.CONTROL + 'A')
+        if elem.text == 'A':
+            elem.send_keys(Keys.BACKSPACE)
         elem.send_keys(email)
 
     def get_email_error_note(self) -> str:
@@ -26,14 +31,20 @@ class RegistrationSteps(Common):
 
     def fill_new_password(self, password):
         elem = self.wait_for(rp.NEW_PASSWORD)
+        elem.send_keys(Keys.CONTROL + 'A')
         if elem.text != '':
             elem.send_keys(Keys.CONTROL + 'A')
+        if elem.text == 'A':
+            elem.send_keys(Keys.BACKSPACE)
         elem.send_keys(password)
 
     def confirm_password(self, password):
         elem = self.wait_for(rp.CONFIRM_PASSWORD)
+        elem.send_keys(Keys.CONTROL + 'A')
         if elem.text != '':
             elem.send_keys(Keys.CONTROL + 'A')
+        if elem.text == 'A':
+            elem.send_keys(Keys.BACKSPACE)
         elem.send_keys(password)
 
     def submit_password(self) -> str:

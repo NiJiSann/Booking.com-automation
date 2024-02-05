@@ -1,5 +1,3 @@
-import time
-
 import pytest
 from final_project.data.AccountData import AccountData
 from final_project.data.CommonData import Urls

@@ -1,5 +1,3 @@
-import time
-
 from final_project.steps.BookAttractionSteps import AttractionSteps
 from final_project.data.AttractionData import AttractionData
 import pytest

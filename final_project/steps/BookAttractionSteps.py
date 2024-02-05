@@ -1,7 +1,5 @@
 import time
-
 from selenium.webdriver import Keys
-
 from final_project.pages.AttractionsPage import AttractionsPage as ap
 from final_project.pages.CommopPage import CommonPage as cp
 from final_project.steps.common_actions import Common

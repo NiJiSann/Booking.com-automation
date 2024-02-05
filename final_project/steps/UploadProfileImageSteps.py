@@ -1,5 +1,4 @@
 import time
-
 from final_project.pages.AccountSettingsPage import AccountSettingsPage as asp
 from final_project.pages.PersonalDetailsPage import PersonalDetailsPage as pdp
 from final_project.pages.CommopPage import CommonPage as cp

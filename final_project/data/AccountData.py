@@ -6,7 +6,7 @@ from faker import Faker
 class AccountData:
     empty_email = ''
     incorrect_email = 'abc'
-    correct_email = 'MYmailCorrect8@gmail.com'
+    correct_email = 'sally@gmail.com'
     empty_password = ''
     only_lowercase_password = 'aaaaaaaaaa'
     short_password = 'Aaaaa'
@@ -25,16 +25,16 @@ class AccountData:
                   ]
 
     password_confirm_data = [(empty_password, empty_password, 'Please enter your new password'),
-                             # (only_lowercase_password, empty_password,
-                             #  'Your password must include at least one number'),
-                             # (short_password, empty_password,
-                             #  'Your password must be at least 10 characters'),
-                             # (no_uppercase_password, empty_password,
-                             #  'Your password must include at least one uppercase letter'),
-                             # (correct_password, empty_password,
-                             #  'Please confirm your password'),
-                             # (correct_password, only_lowercase_password,
-                             #  'The passwords you entered did not match, please try again'),
+                             (only_lowercase_password, empty_password,
+                              'Your password must include at least one number'),
+                             (short_password, empty_password,
+                              'Your password must be at least 10 characters'),
+                             (no_uppercase_password, empty_password,
+                              'Your password must include at least one uppercase letter'),
+                             (correct_password, empty_password,
+                              'Please confirm your password'),
+                             (correct_password, only_lowercase_password,
+                              'The passwords you entered did not match, please try again'),
                              (correct_password, correct_password, 'Success')
                              ]
 

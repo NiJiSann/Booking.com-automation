@@ -1,8 +1,5 @@
-import pickle
-import time
 import pytest
 from final_project.steps.SignInSteps import SignInSteps
-from final_project.data.AccountData import AccountData
 from final_project.data.CommonData import Urls
 from final_project.steps.UploadProfileImageSteps import UploadProfileImageSteps
 from final_project.data.ImageData import ImageData
@@ -17,7 +14,6 @@ class TestUploadProfileImage:
         rs = SignInSteps(driver_undetected)
         rs.open_page(Urls.HOME_URL)
         rs.driver.refresh()
-        time.sleep(1)
         rs.open_sign_in()
         rs.fill_email(email)
         rs.submit_email()
