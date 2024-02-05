@@ -50,14 +50,11 @@ class ChangeCurrencySteps(Common):
     def get_car_rental_price_currency(self) -> str:
         time.sleep(1)
         self.click(cp.CAR_RENTAL)
-        try:
-            input_loc = self.wait_for(ccp.PICK_UP_LOCATION_INPUT)
-            input_loc.click()
-            input_loc.send_keys('Florida')
-            time.sleep(2)
-            input_loc.send_keys(Keys.ENTER)
-        except:
-            pass
+        input_loc = self.wait_for(ccp.PICK_UP_LOCATION_INPUT)
+        input_loc.click()
+        input_loc.send_keys('Florida')
+        time.sleep(2)
+        input_loc.send_keys(Keys.ENTER)
         time.sleep(1)
         self.click(ccp.SEARCH_CAR)
         try:
