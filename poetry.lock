@@ -347,17 +347,6 @@ files = [
 testing = ["hatch", "pre-commit", "pytest", "tox"]
 
 [[package]]
-name = "fake-useragent"
-version = "1.4.0"
-description = "Up-to-date simple useragent faker with real world database"
-optional = false
-python-versions = "*"
-files = [
-    {file = "fake-useragent-1.4.0.tar.gz", hash = "sha256:5426e4015d8ccc5bb25f64d3dfcfd3915eba30ffebd31b86b60dc7a4c5d65528"},
-    {file = "fake_useragent-1.4.0-py3-none-any.whl", hash = "sha256:9acce439ee2c6cf9c3772fa6c200f62dc8d56605063327a4d8c5d0e47f414b85"},
-]
-
-[[package]]
 name = "faker"
 version = "22.6.0"
 description = "Faker is a Python package that generates fake data for you."
@@ -1447,4 +1436,4 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "0535950598f63b2d48e2719a12801ef9547b168fc94f9e480242408536e7c774"
+content-hash = "cff6e084dcb40f342c896b290ecf402a76493feaf90610d9eaf8d259fce91811"
