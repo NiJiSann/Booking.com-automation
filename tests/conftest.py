@@ -18,6 +18,7 @@ def driver():
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument("--disable-web-security")
     options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3")
     options.add_experimental_option("excludeSwitches", ['enable-automation'])
     download_path = r'downloads'
     prefs = {
@@ -27,7 +28,7 @@ def driver():
     options.add_experimental_option('prefs', prefs)
     driver = webdriver.Chrome(options=options, service=service)
     yield driver
-    with open('login_cookies', 'wb') as filehandler:
+    with open('login_cookies.json', 'wb') as filehandler:
         pickle.dump(driver.get_cookies(), filehandler)
     driver.quit()
 
