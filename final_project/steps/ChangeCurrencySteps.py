@@ -15,7 +15,7 @@ class ChangeCurrencySteps(Common):
         self.click(ccp.get_currency_locator(currency))
 
     def get_stays_price_currency(self) -> str:
-
+        time.sleep(1)
         self.click(ccp.DATES)
         self.click(ccp.FLEXIBLE)
         self.click(ccp.A_WEEKEND)
@@ -24,6 +24,7 @@ class ChangeCurrencySteps(Common):
         input_loc = self.wait_for(ccp.STAY_LOCATION_INPUT)
         input_loc.click()
         input_loc.clear()
+        time.sleep(1)
         input_loc.send_keys('Japan')
         time.sleep(2)
         input_loc.send_keys(Keys.ENTER)
@@ -34,6 +35,7 @@ class ChangeCurrencySteps(Common):
     def get_attraction_price_currency(self) -> str:
         attrs = AttractionSteps(self.driver)
         attrs.open_attractions_page()
+        time.sleep(1)
         attrs.enter_city_country('Tokyo')
         attrs.search_attractions()
         price = self.wait_for(AttractionsPage.PRICE).text.replace('.', '')
@@ -41,7 +43,9 @@ class ChangeCurrencySteps(Common):
         return price
 
     def get_car_rental_price_currency(self) -> str:
+        time.sleep(1)
         self.click(cp.CAR_RENTAL)
+        time.sleep(1)
         input_loc = self.wait_for(ccp.PICK_UP_LOCATION_INPUT)
         input_loc.click()
         input_loc.send_keys('Florida')
@@ -53,7 +57,9 @@ class ChangeCurrencySteps(Common):
         return price
 
     def get_taxi_price_currency(self) -> str:
+        time.sleep(1)
         self.click(cp.AIRPORT_TAXI)
+        time.sleep(1)
         input_loc = self.wait_for(ccp.FROM_LOCATION_INPUT)
         input_loc.send_keys('Haneda')
         time.sleep(2)
@@ -68,8 +74,11 @@ class ChangeCurrencySteps(Common):
         return price
 
     def get_flight_price_currency(self) -> str:
+        time.sleep(1)
         self.click(cp.FLIGHTS)
+        time.sleep(1)
         self.click(ccp.TO_HOLDER)
+        time.sleep(1)
         input_loc = self.wait_for(ccp.TO_INPUT)
         input_loc.send_keys('Tokyo')
         time.sleep(2)

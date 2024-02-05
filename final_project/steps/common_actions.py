@@ -26,8 +26,8 @@ class Common:
         self._wait.until(ec.element_to_be_clickable(locator)).submit()
 
     def get_text(self, locator):
-        time.sleep(1)
-        elem = self.wait_for(locator)
+        time.sleep(2)
+        elem = self.find(locator)
         return elem.text
 
     def open_page(self, url):
