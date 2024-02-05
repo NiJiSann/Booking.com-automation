@@ -4,7 +4,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-import pickle
+from seleniumbase import Driver
 
 
 @pytest.fixture(scope="session")
@@ -28,9 +28,19 @@ def driver():
     options.add_experimental_option('prefs', prefs)
     driver = webdriver.Chrome(options=options, service=service)
     yield driver
-    with open('login_cookies.json', 'wb') as filehandler:
-        pickle.dump(driver.get_cookies(), filehandler)
     driver.quit()
+
+
+@pytest.fixture(scope="session")
+def driver_undetected():
+    options = {
+        'undetectable': True,
+        'headless': False
+    }
+    m_driver = Driver(**options)
+
+    yield m_driver
+    m_driver.quit()
 
 
 @pytest.fixture(params=["chrome", "firefox"], scope="session")
