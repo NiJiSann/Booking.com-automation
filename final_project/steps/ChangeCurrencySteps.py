@@ -54,6 +54,7 @@ class ChangeCurrencySteps(Common):
         time.sleep(4)
         input_loc.send_keys(Keys.ENTER)
         self.click(ccp.SEARCH_CAR)
+        time.sleep(2)
         price = self.wait_for(ccp.CAR_PRICE).text.replace('.', '')
         price = re.sub(r'\d', '', price)
         return price
@@ -74,6 +75,7 @@ class ChangeCurrencySteps(Common):
         input_dest.send_keys(Keys.ENTER)
         time.sleep(1)
         self.click(ccp.SEARCH_TAXI)
+        time.sleep(2)
         price = self.wait_for(ccp.TAXI_PRICE).text.replace('.', '')
         price = re.sub(r'\d', '', price)
         return price
@@ -81,9 +83,9 @@ class ChangeCurrencySteps(Common):
     def get_flight_price_currency(self) -> str:
         time.sleep(1)
         self.click(cp.FLIGHTS)
-        time.sleep(1)
+        time.sleep(2)
         self.click(ccp.TO_HOLDER)
-        time.sleep(1)
+        time.sleep(2)
         input_loc = self.wait_for(ccp.TO_INPUT)
         input_loc.clear()
         input_loc.send_keys('Tokyo')

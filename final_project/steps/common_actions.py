@@ -12,7 +12,7 @@ class Common:
         self.driver.implicitly_wait(5)
 
     def wait_for(self, locator) -> WebElement:
-        return self._wait.until(ec.presence_of_element_located(locator))
+        return self._wait.until(ec.visibility_of_element_located(locator))
 
     def find(self, locator) -> WebElement:
         time.sleep(1)
