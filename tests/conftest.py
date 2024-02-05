@@ -41,7 +41,6 @@ def driver_undetected():
         'd_height': 1080
     }
     m_driver = Driver(**options)
-
     yield m_driver
     m_driver.quit()
 

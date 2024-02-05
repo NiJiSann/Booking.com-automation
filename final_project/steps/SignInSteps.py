@@ -14,7 +14,8 @@ class SignInSteps(Common):
         elem.click()
         elem.send_keys(Keys.CONTROL + 'A')
         if elem.text != '':
-            elem.send_keys(Keys.CONTROL + 'A' + Keys.DELETE)
+            elem.send_keys(Keys.CONTROL + 'A')
+            elem.send_keys(Keys.DELETE)
         if elem.text == 'A':
             elem.send_keys(Keys.BACKSPACE)
         elem.clear()
@@ -35,7 +36,8 @@ class SignInSteps(Common):
         elem.click()
         elem.send_keys(Keys.CONTROL + 'A' + Keys.DELETE)
         if elem.text != '':
-            elem.send_keys(Keys.CONTROL + 'A' + Keys.DELETE)
+            elem.send_keys(Keys.CONTROL + 'A')
+            elem.send_keys(Keys.DELETE)
         if elem.text == 'A':
             elem.send_keys(Keys.BACKSPACE)
         elem.clear()
