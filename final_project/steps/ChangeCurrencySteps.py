@@ -47,7 +47,7 @@ class ChangeCurrencySteps(Common):
         price = re.sub(r'\d', '', price)
         return price
 
-    def get_car_rental_price_currency(self) -> str:
+    def get_car_rental_price_currency(self, match) -> str:
         time.sleep(1)
         self.click(cp.CAR_RENTAL)
         input_loc = self.wait_for(ccp.PICK_UP_LOCATION_INPUT)
@@ -61,9 +61,10 @@ class ChangeCurrencySteps(Common):
             self.wait_for(ccp.CAR_PRICE)
         except:
             pass
-        price = self.get_text(ccp.CAR_PRICE).replace('.', '')
-        price = re.sub(r'\d', '', price)
-        return price
+        source =  self.driver.page_source
+        if source.__contains__(match[0]) or source.__contains__(match[1]):
+            return 'Currencies are matching'
+        return 'Currencies are not matching'
 
     def get_taxi_price_currency(self) -> str:
         time.sleep(1)
