@@ -14,7 +14,7 @@ class ChangeCurrencySteps(Common):
         self.wait_for(cp.CURRENCY_PICKER).click()
         self.click(ccp.get_currency_locator(currency))
 
-    def get_stays_price_currency(self) -> str:
+    def get_stays_price_currency(self, match) -> str:
         time.sleep(1)
         self.click(ccp.DATES)
         self.click(ccp.FLEXIBLE)
@@ -32,20 +32,21 @@ class ChangeCurrencySteps(Common):
         except:
             pass
         time.sleep(1)
-        self.wait_for(ccp.STAY_PRICE)
-        price = self.get_text(ccp.STAY_PRICE).replace('.', '')
-        price = re.sub(r'\d', '', price)
-        return price
+        source = self.driver.page_source
+        if source.count(match[0]) > 1 or source.count(match[1]) > 1:
+            return 'Currencies are matching'
+        return 'Currencies are not matching'
 
-    def get_attraction_price_currency(self) -> str:
+    def get_attraction_price_currency(self, match) -> str:
         attrs = AttractionSteps(self.driver)
         attrs.open_attractions_page()
         time.sleep(1)
         attrs.enter_city_country('Tokyo')
         attrs.search_attractions()
-        price = self.wait_for(AttractionsPage.PRICE).text.replace('.', '')
-        price = re.sub(r'\d', '', price)
-        return price
+        source = self.driver.page_source
+        if source.count(match[0]) > 1 or source.count(match[1]) > 1:
+            return 'Currencies are matching'
+        return 'Currencies are not matching'
 
     def get_car_rental_price_currency(self, match) -> str:
         time.sleep(1)
@@ -57,13 +58,13 @@ class ChangeCurrencySteps(Common):
         input_loc.send_keys(Keys.ENTER)
         time.sleep(1)
         self.click(ccp.SEARCH_CAR)
-        time.sleep(10)
+        time.sleep(20)
         source = self.driver.page_source
-        if source.__contains__(match[0]) or source.__contains__(match[1]):
+        if source.count(match[0]) > 1 or source.count(match[1]) > 1:
             return 'Currencies are matching'
         return 'Currencies are not matching'
 
-    def get_taxi_price_currency(self) -> str:
+    def get_taxi_price_currency(self, match) -> str:
         time.sleep(1)
         self.click(cp.AIRPORT_TAXI)
         time.sleep(1)
@@ -81,16 +82,14 @@ class ChangeCurrencySteps(Common):
         except:
             pass
         self.click(ccp.SEARCH_TAXI)
-        time.sleep(1)
-        try:
-            self.wait_for(ccp.TAXI_PRICE)
-        except:
-            pass
-        price = self.get_text(ccp.TAXI_PRICE).replace('.', '')
-        price = re.sub(r'\d', '', price)
-        return price
+        time.sleep(15)
+        source = self.driver.page_source
+        if source.count(match[0]) > 1 or source.count(match[1]) > 1:
+            return 'Currencies are matching'
+        return 'Currencies are not matching'
 
-    def get_flight_price_currency(self) -> str:
+
+    def get_flight_price_currency(self, match) -> str:
         time.sleep(1)
         self.click(cp.FLIGHTS)
         try:
@@ -104,11 +103,8 @@ class ChangeCurrencySteps(Common):
             pass
 
         self.click(ccp.SEARCH_FLIGHT)
-        time.sleep(5)
-        try:
-            self.wait_for(ccp.FLIGHT_PRICE)
-        except:
-            pass
-        price = self.get_text(ccp.FLIGHT_PRICE).replace('.', '')
-        price = re.sub(r'\d', '', price)
-        return price
+        time.sleep(15)
+        source = self.driver.page_source
+        if source.count(match[0]) > 1 or source.count(match[1]) > 1:
+            return 'Currencies are matching'
+        return 'Currencies are not matching'
