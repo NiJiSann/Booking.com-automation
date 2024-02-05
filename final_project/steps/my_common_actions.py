@@ -23,8 +23,8 @@ class MyCommonActions(Common):
             if element.text == text:
                 return element
 
-    def wait_current_url(self, url_fragment):
-        self._wait.until(ec.url_contains(url_fragment))
+    def get_value_element(self, locator):
+        return self.find(locator).get_attribute("value")
 
     def go_to_element(self, locator):
         self.driver.execute_script("arguments[0].scrollIntoView();",
