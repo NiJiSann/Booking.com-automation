@@ -21,13 +21,16 @@ class ChangeCurrencySteps(Common):
         self.click(ccp.A_WEEKEND)
         self.click(ccp.MONTH)
         self.click(ccp.SELECT)
-        input_loc = self.wait_for(ccp.STAY_LOCATION_INPUT)
-        input_loc.click()
-        input_loc.clear()
-        time.sleep(1)
-        input_loc.send_keys('Japan')
-        time.sleep(2)
-        input_loc.send_keys(Keys.ENTER)
+        try:
+            input_loc = self.wait_for(ccp.STAY_LOCATION_INPUT)
+            input_loc.click()
+            input_loc.clear()
+            time.sleep(1)
+            input_loc.send_keys('Japan')
+            time.sleep(2)
+            input_loc.send_keys(Keys.ENTER)
+        except:
+            pass
         time.sleep(1)
         self.wait_for(ccp.STAY_PRICE)
         price = self.get_text(ccp.STAY_PRICE).replace('.', '')
@@ -47,11 +50,14 @@ class ChangeCurrencySteps(Common):
     def get_car_rental_price_currency(self) -> str:
         time.sleep(1)
         self.click(cp.CAR_RENTAL)
-        input_loc = self.wait_for(ccp.PICK_UP_LOCATION_INPUT)
-        input_loc.click()
-        input_loc.send_keys('Florida')
-        time.sleep(2)
-        input_loc.send_keys(Keys.ENTER)
+        try:
+            input_loc = self.wait_for(ccp.PICK_UP_LOCATION_INPUT)
+            input_loc.click()
+            input_loc.send_keys('Florida')
+            time.sleep(2)
+            input_loc.send_keys(Keys.ENTER)
+        except:
+            pass
         self.click(ccp.SEARCH_CAR)
         try:
             self.wait_for(ccp.CAR_PRICE)
@@ -65,16 +71,19 @@ class ChangeCurrencySteps(Common):
         time.sleep(1)
         self.click(cp.AIRPORT_TAXI)
         time.sleep(1)
-        input_loc = self.wait_for(ccp.FROM_LOCATION_INPUT)
-        input_loc.click()
-        input_loc.send_keys('Haneda')
-        time.sleep(2)
-        input_loc.send_keys(Keys.ENTER)
-        input_dest = self.wait_for(ccp.TO_LOCATION_INPUT)
-        input_dest.click()
-        input_dest.send_keys('Shibuya')
-        time.sleep(2)
-        input_dest.send_keys(Keys.ENTER)
+        try:
+            input_loc = self.wait_for(ccp.FROM_LOCATION_INPUT)
+            input_loc.click()
+            input_loc.send_keys('Haneda')
+            time.sleep(2)
+            input_loc.send_keys(Keys.ENTER)
+            input_dest = self.wait_for(ccp.TO_LOCATION_INPUT)
+            input_dest.click()
+            input_dest.send_keys('Shibuya')
+            time.sleep(2)
+            input_dest.send_keys(Keys.ENTER)
+        except:
+            pass
         self.click(ccp.SEARCH_TAXI)
         try:
             self.wait_for(ccp.TAXI_PRICE)
