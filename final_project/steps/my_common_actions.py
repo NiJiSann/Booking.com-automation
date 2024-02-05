@@ -25,3 +25,7 @@ class MyCommonActions(Common):
 
     def wait_current_url(self, url_fragment):
         self._wait.until(ec.url_contains(url_fragment))
+
+    def go_to_element(self, locator):
+        self.driver.execute_script("arguments[0].scrollIntoView();",
+                                   self._wait.until(ec.presence_of_element_located(locator)))

@@ -1,10 +1,12 @@
 from final_project.steps.my_common_actions import MyCommonActions
 from final_project.pages.airport_taxi_page import AirportTaxiPage
 from selenium.webdriver.support.ui import Select
+import time
 
 
 class AirportTaxiStep(MyCommonActions, AirportTaxiPage):
     def open_airport_taxi_page(self):
+        time.sleep(2)
         self.click(self.AIRPORT_TAXI)
 
     def change_currency(self):
@@ -13,10 +15,12 @@ class AirportTaxiStep(MyCommonActions, AirportTaxiPage):
 
     def enter_pick_up_location(self, pickup_location):
         self.fill(self.PICK_UP_LOCATION, pickup_location)
+        self.wait_for(self.ITEM_LIST_PICK_UP)
         self.click(self.FIRST_ITEM)
 
     def enter_destination_location(self, destination_location):
         self.fill(self.DESTINATION_LOCATION, destination_location)
+        self.wait_for(self.ITEM_LIST_PICK_DOWN)
         self.click(self.FIRST_ITEM)
 
     def enter_date(self, date):

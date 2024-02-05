@@ -1,3 +1,5 @@
+import time
+
 from final_project.steps.car_rental_step import CarRentalStep
 from final_project.steps.car_rental_search_result_step import CarRentalSearchResultStep
 from final_project.data.car_rental_data import CarRentalData
@@ -23,3 +25,4 @@ class TestCarRental:
 
         car_rental_result_step = CarRentalSearchResultStep(driver)
         car_rental_result_step.wait_current_url("https://cars.booking.com/search-results")
+        time.sleep(25)

@@ -4,6 +4,8 @@ from final_project.pages.CommopPage import CommonPage
 
 class AirportTaxiPage(CommonPage):
     # Locators search airport taxi interface
+    ITEM_LIST_PICK_UP = (By.CSS_SELECTOR, "ul#pickupLocation-items")
+    ITEM_LIST_PICK_DOWN = (By.CSS_SELECTOR, "ul#dropoffLocation-items")
     FIRST_ITEM = (By.CSS_SELECTOR, "[data-test='rw-dropdown-container'] li:nth-child(2) button")
     PICK_UP_LOCATION = (By.ID, 'pickupLocation')
     DESTINATION_LOCATION = (By.ID, 'dropoffLocation')

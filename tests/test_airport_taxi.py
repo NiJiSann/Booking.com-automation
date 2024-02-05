@@ -3,7 +3,7 @@ from final_project.steps.airport_taxi_details_step import AirportTaxiDetailsStep
 from final_project.data.airport_taxi_data import AirportTaxiDate, AirportTaxiDetailsDate
 
 
-class TestCarRental:
+class TestAirportTaxi:
     def test_airport_taxi_one_way(self, driver):
         airport_taxi = AirportTaxiStep(driver)
         airport_taxi.open_page("https://www.booking.com")
