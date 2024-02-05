@@ -12,7 +12,7 @@ class SignInSteps(Common):
     def fill_email(self, email: str):
         elem = self.find(sp.EMAIL_INPUT)
         elem.click()
-        elem.send_keys(Keys.CONTROL + 'A' + Keys.DELETE)
+        elem.send_keys(Keys.CONTROL + 'A')
         if elem.text != '':
             elem.send_keys(Keys.CONTROL + 'A' + Keys.DELETE)
         if elem.text == 'A':

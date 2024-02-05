@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from final_project.steps.SignInSteps import SignInSteps
 from final_project.data.CommonData import Urls
@@ -9,11 +11,12 @@ from assertpy import assert_that, soft_assertions
 class TestUploadProfileImage:
 
     @pytest.mark.parametrize('email, password',
-                             [('sabrorxojaev1@gmail.com', 'CorrectPassword1')])
+                             [('sabrorxojaev2@gmail.com', 'CorrectPassword1')])
     def test_precondition(self, driver_undetected, email, password):
         rs = SignInSteps(driver_undetected)
         rs.open_page(Urls.HOME_URL)
         rs.driver.refresh()
+        time.sleep(1)
         rs.open_sign_in()
         rs.fill_email(email)
         rs.submit_email()

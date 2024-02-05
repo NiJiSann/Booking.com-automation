@@ -29,7 +29,6 @@ class ChangeCurrencySteps(Common):
         input_loc.send_keys(Keys.ENTER)
         price = self.wait_for(ccp.STAY_PRICE).text.replace('.', '')
         price = re.sub(r'\d', '', price)
-        print(price)
         return price
 
     def get_attraction_price_currency(self) -> str:
