@@ -1,4 +1,3 @@
-import time
 from selenium.webdriver import Keys
 from final_project.pages.AttractionsPage import AttractionsPage as ap
 from final_project.pages.CommopPage import CommonPage as cp
@@ -7,7 +6,6 @@ from final_project.steps.common_actions import Common
 
 class AttractionSteps(Common):
     def open_attractions_page(self):
-        time.sleep(2)
         self.click(cp.ATTRACTIONS)
 
     def enter_city_country(self, city_country):
@@ -21,7 +19,7 @@ class AttractionSteps(Common):
         attempts = 0
         while attempts < 4:
             try:
-                self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                self.driver.find_element(ap.BODY).send_keys(Keys.CONTROL + Keys.END)
                 self.click(ap.SHOW_MORE_BTN)
             except:
                 attempts += 1

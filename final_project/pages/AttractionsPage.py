@@ -7,6 +7,7 @@ class AttractionsPage:
     ALL_VIEWED = (By.XPATH, '/html/body/div[1]/div[2]/div/div[2]/div/div[1]/div[4]/div[2]/div')
     DESTINATION = (By.XPATH, '/html/body/div[1]/div[2]/div/div[1]/div/div/div/div[3]/div/div/div/div[2]/ul[1]/li[1]/div')
     PRICE = (By.XPATH, '//*[@id="attr-search-results-page-main-content"]/div[1]/div/div/div/div[1]/div/a/div/div[2]/div[2]/div[2]/div[1]/div/div/div[2]')
+    BODY = (By.CSS_SELECTOR, 'body')
 
     @staticmethod
     def get_attraction_locator(attraction_name: str):

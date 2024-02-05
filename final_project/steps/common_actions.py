@@ -9,14 +9,17 @@ class Common:
     def __init__(self, driver):
         self.driver: WebDriver = driver
         self._wait = WebDriverWait(self.driver, 20)
+        self.driver.implicitly_wait(5)
 
     def wait_for(self, locator) -> WebElement:
         return self._wait.until(ec.presence_of_element_located(locator))
 
     def find(self, locator) -> WebElement:
+        time.sleep(1)
         return self.driver.find_element(*locator)
 
     def click(self, locator):
+        time.sleep(1)
         self._wait.until(ec.element_to_be_clickable(locator)).click()
 
     def submit(self, locator):
@@ -24,7 +27,7 @@ class Common:
 
     def get_text(self, locator):
         time.sleep(1)
-        elem = self.find(locator)
+        elem = self.wait_for(locator)
         return elem.text
 
     def open_page(self, url):

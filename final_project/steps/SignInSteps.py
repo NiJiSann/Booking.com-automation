@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver import Keys
 from final_project.pages.SignInPage import SignInPage as sp
 from final_project.pages.CommopPage import CommonPage as cp
@@ -9,16 +7,17 @@ from final_project.steps.common_actions import Common
 class SignInSteps(Common):
 
     def open_sign_in(self):
-        time.sleep(1)
         self.click(cp.SIGN_IN)
 
     def fill_email(self, email: str):
         elem = self.find(sp.EMAIL_INPUT)
-        elem.send_keys(Keys.CONTROL + 'A')
+        elem.click()
+        elem.send_keys(Keys.CONTROL + 'A' + Keys.DELETE)
         if elem.text != '':
-            elem.send_keys(Keys.CONTROL + 'A')
+            elem.send_keys(Keys.CONTROL + 'A' + Keys.DELETE)
         if elem.text == 'A':
             elem.send_keys(Keys.BACKSPACE)
+        elem.clear()
         elem.send_keys(email)
 
     def get_email_error_note(self) -> str:
@@ -33,11 +32,13 @@ class SignInSteps(Common):
 
     def fill_password(self, password):
         elem = self.wait_for(sp.PASSWORD)
-        elem.send_keys(Keys.CONTROL + 'A')
+        elem.click()
+        elem.send_keys(Keys.CONTROL + 'A' + Keys.DELETE)
         if elem.text != '':
-            elem.send_keys(Keys.CONTROL + 'A')
+            elem.send_keys(Keys.CONTROL + 'A' + Keys.DELETE)
         if elem.text == 'A':
             elem.send_keys(Keys.BACKSPACE)
+        elem.clear()
         elem.send_keys(password)
 
     def submit_password(self) -> str:
