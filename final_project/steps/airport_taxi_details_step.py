@@ -6,7 +6,7 @@ from final_project.steps.my_common_actions import MyCommonActions
 
 class AirportTaxiDetailsStep(MyCommonActions, AirportTaxiDetailsPage):
     def select_car_type(self):
-        self.go_to_element(self.SECOND_CAR_TYPE)
+        self.scroll_to_elem(self.SECOND_CAR_TYPE)
         self.click(self.SECOND_CAR_TYPE)
 
     def add_request_child_seat(self):
