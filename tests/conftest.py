@@ -36,8 +36,9 @@ def driver():
 def driver_undetected():
     options = {
         'undetectable': True,
-        'headless': True,
+        'headless2': True,
         'd_width': 1920,
+        'disable_csp': True,
         'd_height': 1080
     }
     m_driver = Driver(**options)
