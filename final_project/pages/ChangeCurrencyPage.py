@@ -22,8 +22,9 @@ class ChangeCurrencyPage:
     SEARCH_CAR = (By.XPATH, '//button[@data-testid="searchbox-toolbox-submit-button"]')
     CAR_PRICE = (By.XPATH, '//div[@aria-label="Product Card"]/div[6]/div/div/div[2]/div')
     # Airport Taxi
-    FROM_LOCATION_INPUT = (By.XPATH, '//input[@placeholder="Enter pick-up location"]')
-    TO_LOCATION_INPUT = (By.XPATH, '//input[@placeholder="Enter destination"]')
+    FROM_LOCATION_INPUT = (By.XPATH, '//input[@id="pickupLocation"]')
+    SELECT_LINK = (By.XPATH, '//button[@data-test="rw-autocomplete__link--0"]')
+    TO_LOCATION_INPUT = (By.XPATH, '//input[@id="dropoffLocation"]')
     SEARCH_TAXI = (By.XPATH, '//span[@data-test="button-content"]/..')
     TAXI_PRICE = (By.XPATH, '//div[@data-test="taxi-car-card-wrapper__car-card-container"]/div/div/div/div/div[2]/div/div/div/div[2]/div')
     # Flights
