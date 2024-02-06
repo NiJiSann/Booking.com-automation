@@ -1,1 +1,7 @@
 allure-reports
+tests/__pycache__
+final_project/steps/__pycache__
+API/GSpread/__pycache__
+final_project/data/__pycache__
+final_project/pages/__pycache__
+.idea
