@@ -25,6 +25,7 @@ def driver():
     }
     options.add_experimental_option('prefs', prefs)
     driver = webdriver.Chrome(options=options, service=service)
+    driver.implicitly_wait(10)
     yield driver
     driver.quit()
 
