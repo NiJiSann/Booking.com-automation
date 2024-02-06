@@ -27,3 +27,7 @@ class CarRentalPage(CommonPage):
     LANGUAGE_PICKER = (By.XPATH, "//button[@data-modal-id='language-selection']")
     ENGLISH_LANGUAGE = (By.XPATH, "(//*[@lang='en-gb'])[1]")
 
+
+class CarRentalSearchResultPage:
+    PREMIUM_CAR = (By.XPATH, "//button[@aria-label='Show premium cars']")
+    FIRST_CAR = (By.XPATH, "(//button[@aria-label='View deal'])[1]")

@@ -43,4 +43,18 @@ class AirportTaxiDetailsPage(CommonPage):
     SECOND_CAR_TYPE = (By.XPATH, '(//*[@data-test="taxi-car-card-wrapper__car-card-container"]/div)[2]')
 
 
-
+class AirportTaxiCheckoutPage(CommonPage):
+    FIRST_NAME = (By.XPATH, "//input[@data-testid='passenger-details-form__first-name-input']")
+    LAST_NAME = (By.XPATH, "//input[@data-testid='passenger-details-form__last-name-input']")
+    EMAIL = (By.XPATH, "//input[@data-testid='passenger-details-form__email-address-input']")
+    PHONE_CODE_SELECT = (By.XPATH, "//select[@data-testid='passenger-details-form__country-code-input']")
+    PHONE_NUMBER = (By.XPATH, "//input[@data-testid='passenger-details-form__phone-number-input']")
+    PAYMENT_IFRAME = (By.XPATH, "//iframe[@title='Payment']")
+    NAME = (By.XPATH, "//input[@name='name']")
+    CARD_NUMBER = (By.XPATH, "//input[@type='text' and @name='number']")
+    CARD_TYPE = (By.XPATH, "//button[@data-testid='cardtypeselector']")
+    CARD_TYPE_VALUE = (By.XPATH, "//*[@data-testid='pm-icon']/div")
+    MASTER_CARD = (By.XPATH, "//li[@class='card-type-item']/button//span[text()='MasterCard']")
+    EXPIRY_DATE = (By.XPATH, "//input[@type='text' and @name='expirationDate']")
+    CVC = (By.XPATH, "//input[@type='text' and @name='cvc']")
+    CHECKOUT_SUBMIT_BUTTON = (By.XPATH, "//button[@data-test='checkout-submit-button']")

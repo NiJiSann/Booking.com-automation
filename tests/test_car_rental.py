@@ -1,26 +1,29 @@
 import time
 
 from final_project.steps.car_rental_step import CarRentalStep
+from final_project.steps.car_rental_result_search_step import CarRentalSearchResultStep
 from final_project.data.car_rental_data import CarRentalData
 from assertpy import assert_that, soft_assertions
 
 
 class TestCarRental:
     def test_car_rental_with_drop_off_different_location(self, driver_undetected):
+        # Steps in main page
         car_rental_step = CarRentalStep(driver_undetected)
         car_rental_step.open_page("https://www.booking.com")
         with soft_assertions():
-            assert_that(car_rental_step.current_url_is_contain("https://www.booking.com/index")).is_true()
+            assert_that(car_rental_step.current_url()).contains("https://www.booking.com/index")
         car_rental_step.close_dialog_modal()
         car_rental_step.change_currency()
         with soft_assertions():
             assert_that(car_rental_step.current_currency()).is_equal_to("USD")
 
+        # Steps in car rental interface
         car_rental_data = CarRentalData()
         car_rental_step.open_rental_page()
         car_rental_step.change_language_to_en()
         with soft_assertions():
-            assert_that(car_rental_step.current_url_is_contain("https://www.booking.com/cars/index")).is_true()
+            assert_that(car_rental_step.current_url()).contains("https://www.booking.com/cars/index")
             assert_that(car_rental_step.search_form_is_visible()).is_true()
 
         car_rental_step.check_drop_car_different_location()
@@ -57,4 +60,15 @@ class TestCarRental:
 
         car_rental_step.click_search_button()
         with soft_assertions():
-            assert_that(car_rental_step.current_url_is_contain("https://cars.booking.com/search-results")).is_true()
+            assert_that(car_rental_step.current_url()).contains("https://cars.booking.com/search-results")
+
+        # Steps in car rental search result page
+        car_rental_search_result = CarRentalSearchResultStep(driver_undetected)
+        car_rental_search_result.select_car_type()
+        with soft_assertions():
+            assert_that(car_rental_search_result.is_selected_car_type()).is_true()
+
+        car_rental_search_result.select_first_car()
+        with soft_assertions():
+            assert_that(car_rental_search_result.current_url()).contains("https://cars.booking.com/package/deal")
+

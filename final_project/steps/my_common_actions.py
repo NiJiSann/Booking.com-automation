@@ -1,3 +1,5 @@
+import time
+
 from selenium.common import TimeoutException
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
@@ -11,7 +13,7 @@ class MyCommonActions(Common):
         self.find(locator).send_keys(value)
 
     def js_click(self, locator):
-        self.driver.execute_script("arguments[0].click();", self.find(locator))
+        self.driver.execute_script("arguments[0].click();", self.driver.find_element(*locator))
 
     def close_dialog_modal(self):
         try:
@@ -32,5 +34,9 @@ class MyCommonActions(Common):
         self.driver.execute_script("arguments[0].scrollIntoView();",
                                    self._wait.until(ec.presence_of_element_located(locator)))
 
-    def current_url_is_contain(self, url):
-        return WebDriverWait(self.driver, 50).until(ec.url_contains(url))
+    def current_url(self):
+        time.sleep(2)
+        return self.driver.current_url
+
+    def switch_to_next_tab(self):
+        self.driver.switch_to.window(self.driver.window_handles[1])
