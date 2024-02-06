@@ -2,10 +2,14 @@ import gspread
 
 
 class Table:
-    def __init__(self, sheet_title: str = 'Sheet1'):
-        self.gc = gspread.service_account(filename='crids.json')
-        self.sheet = self.gc.open('Allure Report TextTable').worksheet(sheet_title)
-        self.records: dict = {k: v for (k, v) in self.sheet.get_all_values()}
+    records: dict = None
 
-    def get_value(self, key: str) -> str:
-        return self.records[key]
+    @staticmethod
+    def load():
+        gc = gspread.service_account(filename='crids.json')
+        sheet = gc.open('Allure Report TextTable').worksheet('Sheet1')
+        Table.records = {k: v for (k, v) in sheet.get_all_values()}
+
+    @staticmethod
+    def get_value(key: str) -> str:
+        return Table.records[key]
