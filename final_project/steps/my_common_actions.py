@@ -1,5 +1,7 @@
 from selenium.common import TimeoutException
 from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.wait import WebDriverWait
+
 from final_project.steps.common_actions import Common
 
 
@@ -31,4 +33,4 @@ class MyCommonActions(Common):
                                    self._wait.until(ec.presence_of_element_located(locator)))
 
     def current_url_is_contain(self, url):
-        return self._wait.until(ec.url_contains(url))
+        return WebDriverWait(self.driver, 50).until(ec.url_contains(url))
