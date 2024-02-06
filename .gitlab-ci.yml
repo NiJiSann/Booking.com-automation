@@ -38,7 +38,7 @@ run_test:
         - poetry install --no-interaction --no-root
     script:
         # Execute Test Cases
-        - poetry run pytest tests/test_changing_currency -v --mode=ci --alluredir allure-results
+        - poetry run pytest tests/test_changing_currency.py -v --mode=ci --alluredir allure-results
     after_script:
         # Generate Allure Report as web html page project source
 #        - 'curl --location --output artifacts.zip --header "PRIVATE-TOKEN: $CI_CD_TOKEN"
