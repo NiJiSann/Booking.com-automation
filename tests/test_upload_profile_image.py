@@ -1,5 +1,6 @@
 import time
 
+import allure
 import pytest
 from final_project.steps.SignInSteps import SignInSteps
 from final_project.data.CommonData import Urls
@@ -8,6 +9,7 @@ from final_project.data.ImageData import ImageData
 from assertpy import assert_that, soft_assertions
 
 
+@allure.feature("Addition Test Cases")
 class TestUploadProfileImage:
 
     @pytest.mark.parametrize('email, password',

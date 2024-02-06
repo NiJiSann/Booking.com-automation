@@ -1,3 +1,4 @@
+import allure
 import pytest
 from final_project.data.AccountData import AccountData
 from final_project.data.CommonData import Urls
@@ -5,6 +6,7 @@ from final_project.steps.SignInSteps import SignInSteps
 from assertpy import assert_that, soft_assertions
 
 
+@allure.feature("Addition Test Cases")
 class TestSignIn:
     def test_precondition(self, driver):
         rs = SignInSteps(driver)

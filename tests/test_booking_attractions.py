@@ -1,3 +1,5 @@
+import allure
+
 from final_project.steps.BookAttractionSteps import AttractionSteps
 from final_project.data.AttractionData import AttractionData
 import pytest
@@ -5,6 +7,7 @@ from final_project.data.CommonData import Urls
 from assertpy import assert_that, soft_assertions
 
 
+@allure.epic("Main Test Cases")
 class TestBookingAttraction:
     def test_precondition(self, driver):
         attraction_steps = AttractionSteps(driver)

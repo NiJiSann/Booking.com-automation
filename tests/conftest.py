@@ -4,7 +4,9 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from seleniumbase import Driver
+from seleniumbase import Driver, BaseCase
+
+from API.GSpread.allure_report_texts import Table
 
 
 @pytest.fixture(scope="session")
@@ -72,6 +74,11 @@ def cross_driver(request):
 
     yield driver
     driver.quit()
+
+
+@pytest.hookimpl(tryfirst=True)
+def pytest_sessionstart(session):
+    Table.load()
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
