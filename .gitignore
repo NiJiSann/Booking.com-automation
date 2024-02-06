@@ -5,3 +5,6 @@ API/GSpread/__pycache__
 final_project/data/__pycache__
 final_project/pages/__pycache__
 .idea
+**/*.jpg
+/tests/downloaded_files/
+/downloaded_files/
