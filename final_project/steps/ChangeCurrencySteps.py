@@ -11,8 +11,8 @@ from final_project.pages.AttractionsPage import AttractionsPage
 
 class ChangeCurrencySteps(Common):
     def choose_currency(self, currency):
-        time.sleep(1)
-        self.wait_for(cp.CURRENCY_PICKER).click()
+        time.sleep(2)
+        self.click(cp.CURRENCY_PICKER)
         self.click(ccp.get_currency_locator(currency))
 
     def get_stays_price_currency(self, match) -> str:
@@ -55,7 +55,7 @@ class ChangeCurrencySteps(Common):
         time.sleep(1)
         input_loc = self.wait_for(ccp.PICK_UP_LOCATION_INPUT)
         input_loc.send_keys('Florida')
-        time.sleep(2)
+        time.sleep(5)
         input_loc.send_keys(Keys.ENTER)
         time.sleep(1)
         self.click(ccp.SEARCH_CAR)
