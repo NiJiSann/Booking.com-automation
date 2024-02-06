@@ -8,3 +8,4 @@ final_project/pages/__pycache__
 **/*.jpg
 /tests/downloaded_files/
 /downloaded_files/
+API/RandomImage/__pycache__

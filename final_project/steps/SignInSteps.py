@@ -15,9 +15,11 @@ class SignInSteps(Common):
         elem = self.find(sp.EMAIL_INPUT)
         elem.click()
         elem.clear()
-        time.sleep(0.5)
-        elem.send_keys(Keys.CONTROL + 'A')
-        time.sleep(0.5)
+        t = elem.text
+        time.sleep(1)
+        if not t == '':
+            elem.send_keys(Keys.CONTROL + 'A')
+        time.sleep(1)
         elem.send_keys(email)
 
     def get_email_error_note(self) -> str:
@@ -34,9 +36,11 @@ class SignInSteps(Common):
         elem = self.wait_for(sp.PASSWORD)
         elem.click()
         elem.clear()
-        time.sleep(0.5)
-        elem.send_keys(Keys.CONTROL + 'A')
-        time.sleep(0.5)
+        t = elem.text
+        time.sleep(1)
+        if not t == '':
+            elem.send_keys(Keys.CONTROL + 'A')
+        time.sleep(1)
         elem.send_keys(password)
 
     def submit_password(self) -> str:
