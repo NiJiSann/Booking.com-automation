@@ -18,11 +18,15 @@ class CarRentalStep(MyCommonActions, CarRentalPage):
     def current_currency(self):
         return self.get_text(self.CURRENCY_PICKER_NAME)
 
+    def change_language_to_en(self):
+        self.click(self.LANGUAGE_PICKER)
+        self.click(self.ENGLISH_LANGUAGE)
+
     def search_form_is_visible(self):
         return self.find(self.SEARCH_FORM)
 
     def check_drop_car_different_location(self):
-        self.click(self.DROP_CAR_DIFFERENT_LOCATION_CHECKBOX)
+        self.js_click(self.DROP_CAR_DIFFERENT_LOCATION_CHECKBOX)
 
     def is_checked_drop_car(self):
         if "dropoff-field-visible" in self.find(self.DROP_CAR_DIFFERENT_LOCATION_CHECKBOX_STATE).get_attribute("class"):
@@ -31,7 +35,7 @@ class CarRentalStep(MyCommonActions, CarRentalPage):
             return False
 
     def uncheck_driver_age_between(self):
-        self.click(self.DRIVERS_AGE_BETWEEN_CHECKBOX)
+        self.js_click(self.DRIVERS_AGE_BETWEEN_CHECKBOX)
 
     def is_checked_age_between(self):
         if self.find(self.DRIVERS_AGE_NUMBER):

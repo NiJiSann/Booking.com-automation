@@ -18,6 +18,10 @@ class AirportTaxiStep(MyCommonActions, AirportTaxiPage):
     def current_currency(self):
         return self.get_text(self.CURRENCY_PICKER_NAME)
 
+    def change_language_to_en(self):
+        self.click(self.LANGUAGE_PICKER)
+        self.click(self.ENGLISH_LANGUAGE)
+
     def search_form_is_visible(self):
         return self.find(self.SEARCH_FORM)
 

@@ -7,8 +7,8 @@ from assertpy import assert_that, soft_assertions
 
 
 class TestAirportTaxi:
-    def test_airport_taxi_one_way(self, driver):
-        airport_taxi = AirportTaxiStep(driver)
+    def test_airport_taxi_one_way(self, driver_undetected):
+        airport_taxi = AirportTaxiStep(driver_undetected)
         airport_taxi.open_page("https://www.booking.com")
         with soft_assertions():
             assert_that(airport_taxi.driver.current_url).contains("https://www.booking.com/index")
@@ -20,6 +20,7 @@ class TestAirportTaxi:
 
         airport_taxi_data = AirportTaxiDate()
         airport_taxi.open_airport_taxi_page()
+        airport_taxi.change_language_to_en()
         with soft_assertions():
             assert_that(airport_taxi.driver.current_url).contains("https://www.booking.com/taxi")
             assert_that(airport_taxi.search_form_is_visible()).is_true()
@@ -53,7 +54,7 @@ class TestAirportTaxi:
             assert_that(airport_taxi.driver.current_url).contains("https://taxis.booking.com/search")
 
         airport_taxi_details_data = AirportTaxiDetailsDate()
-        airport_taxi_details = AirportTaxiDetailsStep(driver)
+        airport_taxi_details = AirportTaxiDetailsStep(driver_undetected)
         airport_taxi_details.select_car_type()
         airport_taxi_details.add_request_child_seat()
         with soft_assertions():

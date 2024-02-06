@@ -6,9 +6,10 @@ class CarRentalPage(CommonPage):
     # Locators car rental interface
     CURRENCY_PICKER_NAME = (By.XPATH, '//button[@data-testid="header-currency-picker-trigger"]/span')
     SEARCH_FORM = (By.XPATH, "//*[@data-testid='cars-searchbox-envelope']")
-    DROP_CAR_DIFFERENT_LOCATION_CHECKBOX = (By.CSS_SELECTOR, "label[for='searchbox-toolbox-drop-off-checkbox-desktop']")
+    DROP_CAR_DIFFERENT_LOCATION_CHECKBOX = (By.XPATH,
+                                            "//input[@data-testid='searchbox-toolbox-drop-off-checkbox-desktop']")
     DROP_CAR_DIFFERENT_LOCATION_CHECKBOX_STATE = (By.XPATH, "//*[@data-testid='searchbox-container']")
-    DRIVERS_AGE_BETWEEN_CHECKBOX = (By.CSS_SELECTOR, "label[for='drivers-age-checkbox']")
+    DRIVERS_AGE_BETWEEN_CHECKBOX = (By.XPATH, "//input[@data-testid='drivers-age-checkbox']")
     DRIVERS_AGE_NUMBER = (By.ID, "drivers-age-input-text")
     FIRST_ITEM = (By.XPATH, "(//*[@data-testid='suggestion'])[1]")
     PIC_UP_LOCATION_INPUT = (By.ID, "searchbox-toolbox-fts-pickup")
@@ -23,3 +24,6 @@ class CarRentalPage(CommonPage):
     DATA_PICKER_MONTH_SLIDER_BUTTON = (By.XPATH, "//*[@data-testid='bui-calendar']//button")
     DATA_PICKER_FIRST_MONTH_HEADER = (By.XPATH, "(//*[@data-testid='bui-calendar']//h3)[1]")
     DATA_PICKER_DAY = (By.XPATH, "(//*[@data-testid='bui-calendar']//tbody)[1]//td")
+    LANGUAGE_PICKER = (By.XPATH, "//button[@data-modal-id='language-selection']")
+    ENGLISH_LANGUAGE = (By.XPATH, "(//*[@lang='en-gb'])[1]")
+

@@ -25,6 +25,8 @@ class AirportTaxiPage(CommonPage):
     CONFIRM_TIME_BTN = (By.XPATH, "//button[@data-test='rw-time-picker__confirm-button']")
     PASSENGERS_SELECTOR = (By.ID, "passengers")
     SUBMIT_BUTTON = (By.XPATH, "(//button[@name='searchButton'])[1]")
+    LANGUAGE_PICKER = (By.XPATH, "//button[@data-modal-id='language-selection']")
+    ENGLISH_LANGUAGE = (By.XPATH, "(//*[@lang='en-gb'])[1]")
 
 
 class AirportTaxiDetailsPage(CommonPage):

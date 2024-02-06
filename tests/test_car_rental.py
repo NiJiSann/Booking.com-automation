@@ -1,11 +1,13 @@
+import time
+
 from final_project.steps.car_rental_step import CarRentalStep
 from final_project.data.car_rental_data import CarRentalData
 from assertpy import assert_that, soft_assertions
 
 
 class TestCarRental:
-    def test_car_rental_with_drop_off_different_location(self, driver):
-        car_rental_step = CarRentalStep(driver)
+    def test_car_rental_with_drop_off_different_location(self, driver_undetected):
+        car_rental_step = CarRentalStep(driver_undetected)
         car_rental_step.open_page("https://www.booking.com")
         with soft_assertions():
             assert_that(car_rental_step.driver.current_url).contains("https://www.booking.com/index")
@@ -16,6 +18,7 @@ class TestCarRental:
 
         car_rental_data = CarRentalData()
         car_rental_step.open_rental_page()
+        car_rental_step.change_language_to_en()
         with soft_assertions():
             assert_that(car_rental_step.driver.current_url).contains("https://www.booking.com/cars/index")
             assert_that(car_rental_step.search_form_is_visible()).is_true()
@@ -40,7 +43,6 @@ class TestCarRental:
         car_rental_step.enter_drop_off_location(car_rental_data.drop_off_location)
         with soft_assertions():
             assert_that(car_rental_step.drop_off_location_value()).contains(car_rental_data.drop_off_location)
-
         car_rental_step.select_date_and_time(car_rental_data.pick_up_date,
                                              car_rental_data.pick_up_time, "pick_up")
         with soft_assertions():

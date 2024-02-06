@@ -4,6 +4,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from seleniumbase import Driver
 
 
 def pytest_addoption(parser):
@@ -25,7 +26,7 @@ def driver(request):
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument("--disable-web-security")
     options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3")
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3")
     options.add_experimental_option("excludeSwitches", ['enable-automation'])
     download_path = r'downloads'
     prefs = {
@@ -36,6 +37,26 @@ def driver(request):
     driver = webdriver.Chrome(options=options, service=service)
     yield driver
     driver.quit()
+
+
+@pytest.fixture(scope="session")
+def driver_undetected(request):
+    mode = request.config.getoption("--mode")
+    options = {
+        'disable_gpu': True,
+        'undetectable': True,
+        'agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                 '(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3',
+        'd_width': 1920,
+        'd_height': 1080
+    }
+    # Change run mode
+    if mode == 'ci':
+        options['headless2'] = True
+
+    m_driver = Driver(**options)
+    yield m_driver
+    m_driver.quit()
 
 
 @pytest.fixture(params=["chrome", "firefox"], scope="session")
