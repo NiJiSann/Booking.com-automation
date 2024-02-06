@@ -8,9 +8,15 @@ import time
 
 
 class AirportTaxiStep(MyCommonActions, AirportTaxiPage):
+    def main_page_is_opened(self):
+        return self.find(self.MAIN_PAGE_TITLE)
+
     def open_airport_taxi_page(self):
         time.sleep(3)
         self.click(self.AIRPORT_TAXI)
+
+    def airport_taxi_page_is_opened(self):
+        return self.find(self.AIRPORT_PAGE_TITLE)
 
     def change_currency(self):
         self.click(self.CURRENCY_PICKER)
@@ -25,16 +31,6 @@ class AirportTaxiStep(MyCommonActions, AirportTaxiPage):
 
     def search_form_is_visible(self):
         return self.find(self.SEARCH_FORM)
-
-    def check_one_way(self):
-        self.click(self.ONE_WAY_CHECKBOX)
-
-    def is_checked_one_way(self):
-        try:
-            self.find(self.ONE_WAY_STATE)
-            return False
-        except NoSuchElementException:
-            return True
 
     def enter_pick_up_location(self, pickup_location):
         self.fill(self.PICK_UP_LOCATION, pickup_location)

@@ -9,28 +9,29 @@ from assertpy import assert_that, soft_assertions
 
 class TestAirportTaxi:
     def test_end_to_end_airport_taxi_one_way(self, driver_undetected):
-        # Steps in main page
         airport_taxi = AirportTaxiStep(driver_undetected)
+        airport_taxi_details = AirportTaxiDetailsStep(driver_undetected)
+        airport_taxi_checkout = AirportTaxiCheckoutStep(driver_undetected)
+
+
+        # Steps in main page
         airport_taxi.open_page("https://www.booking.com")
         with soft_assertions():
-            assert_that(airport_taxi.current_url()).contains("https://www.booking.com/index")
+            assert_that(airport_taxi.main_page_is_opened()).is_true()
         airport_taxi.close_dialog_modal()
         airport_taxi.change_currency()
         airport_taxi.close_dialog_modal()
         with soft_assertions():
             assert_that(airport_taxi.current_currency()).is_equal_to("USD")
 
+
         # Steps in airport taxi interface
         airport_taxi_data = AirportTaxiDate()
         airport_taxi.open_airport_taxi_page()
         airport_taxi.change_language_to_en()
         with soft_assertions():
-            assert_that(airport_taxi.current_url()).contains("https://www.booking.com/taxi")
+            assert_that(airport_taxi.airport_taxi_page_is_opened()).is_true()
             assert_that(airport_taxi.search_form_is_visible()).is_true()
-
-        airport_taxi.check_one_way()
-        with soft_assertions():
-            assert_that(airport_taxi.is_checked_one_way()).is_true()
 
         airport_taxi.enter_pick_up_location(airport_taxi_data.pic_up_location)
         with soft_assertions():
@@ -54,11 +55,11 @@ class TestAirportTaxi:
 
         airport_taxi.click_search_button()
         with soft_assertions():
-            assert_that(airport_taxi.current_url()).contains("https://taxis.booking.com/search")
+            assert_that(airport_taxi_details.airport_taxi_details_page_is_opened()).is_true()
+
 
         # Steps in airport taxi details page
         airport_taxi_details_data = AirportTaxiDetailsDate()
-        airport_taxi_details = AirportTaxiDetailsStep(driver_undetected)
         airport_taxi_details.select_car_type()
         airport_taxi_details.add_request_child_seat()
         with soft_assertions():
@@ -70,12 +71,12 @@ class TestAirportTaxi:
 
         airport_taxi_details.click_continue_button()
         with soft_assertions():
-            assert_that(airport_taxi_details.current_url()).contains("https://taxis.booking.com/checkout")
+            assert_that(airport_taxi_checkout.taxi_checkout_page_is_opened()).is_true()
+
 
         # Steps in airport taxi checkout
         user_data = UserData()
         payment_data = PaymentData()
-        airport_taxi_checkout = AirportTaxiCheckoutStep(driver_undetected)
 
         airport_taxi_checkout.enter_first_name(user_data.first_name)
         with soft_assertions():

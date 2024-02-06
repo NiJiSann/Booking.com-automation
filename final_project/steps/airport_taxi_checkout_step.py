@@ -7,6 +7,10 @@ from final_project.steps.my_common_actions import MyCommonActions
 
 
 class AirportTaxiCheckoutStep(MyCommonActions, AirportTaxiCheckoutPage):
+
+    def taxi_checkout_page_is_opened(self):
+        return self.find(self.TAXI_CHECKOUT_TITLE).is_displayed()
+
     def enter_first_name(self, first_name):
         self.fill(self.FIRST_NAME, first_name)
 

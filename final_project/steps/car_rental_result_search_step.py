@@ -5,6 +5,10 @@ from final_project.pages.car_rental_page import CarRentalSearchResultPage
 
 
 class CarRentalSearchResultStep(MyCommonActions, CarRentalSearchResultPage):
+    def car_rental_result_search_is_opened(self):
+        time.sleep(2)
+        return self.find(self.CAR_RENTAL_PAGE_TITLE).is_displayed()
+
     def select_car_type(self):
         self.click(self.PREMIUM_CAR)
 
@@ -17,3 +21,5 @@ class CarRentalSearchResultStep(MyCommonActions, CarRentalSearchResultPage):
         self.click(self.FIRST_CAR)
         self.switch_to_next_tab()
 
+    def car_deal_page_is_opened(self):
+        return self.find(self.DEAL_PAGE_TITLE).is_displayed()

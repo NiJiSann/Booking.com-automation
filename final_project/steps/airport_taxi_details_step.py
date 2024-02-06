@@ -5,6 +5,10 @@ from final_project.steps.my_common_actions import MyCommonActions
 
 
 class AirportTaxiDetailsStep(MyCommonActions, AirportTaxiDetailsPage):
+
+    def airport_taxi_details_page_is_opened(self):
+        return self.find(self.AIRPORT_TAXI_DETAILS_TITLE).is_displayed()
+
     def select_car_type(self):
         self.go_to_element(self.SECOND_CAR_TYPE)
         self.click(self.SECOND_CAR_TYPE)

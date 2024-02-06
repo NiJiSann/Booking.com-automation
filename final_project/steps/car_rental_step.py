@@ -106,3 +106,9 @@ class CarRentalStep(MyCommonActions, CarRentalPage):
 
     def click_search_button(self):
         self.js_click(self.SUBMIT_BUTTON)
+
+    def main_page_is_opened(self):
+        return self.find(self.MAIN_PAGE_TITLE)
+
+    def car_rental_is_opened(self):
+        return self.find(self.RENTAL_PAGE_TITLE)
