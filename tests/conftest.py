@@ -4,6 +4,9 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from seleniumbase import Driver, BaseCase
+
+from API.GSpread.allure_report_texts import Table
 
 
 @pytest.fixture(scope="session")
@@ -17,6 +20,8 @@ def driver():
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument("--disable-web-security")
     options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument(
+        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3")
     options.add_experimental_option("excludeSwitches", ['enable-automation'])
     download_path = r'downloads'
     prefs = {
@@ -28,6 +33,20 @@ def driver():
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
+
+
+@pytest.fixture(scope="session")
+def driver_undetected():
+    options = {
+        'undetectable': True,
+        'headless2': True,
+        'd_width': 1920,
+        'disable_csp': True,
+        'd_height': 1080
+    }
+    m_driver = Driver(**options)
+    yield m_driver
+    m_driver.quit()
 
 
 @pytest.fixture(params=["chrome", "firefox"], scope="session")
@@ -58,6 +77,11 @@ def cross_driver(request):
     driver.quit()
 
 
+@pytest.hookimpl(tryfirst=True)
+def pytest_sessionstart(session):
+    Table.load()
+
+
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
@@ -69,5 +93,6 @@ def pytest_runtest_makereport(item, call):
             now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             filename = f'{item.nodeid}_{now}.png'.replace('/', '_').replace('::', '__')
             allure.attach(driver.get_screenshot_as_png(), name=filename, attachment_type=allure.attachment_type.PNG)
+            allure.attach(driver.page_source, name='source HTML', attachment_type=allure.attachment_type.HTML)
         except:
             pass
