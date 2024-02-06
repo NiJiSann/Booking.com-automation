@@ -1,0 +1,9 @@
+# idea
+.idea/
+
+# cache
+__pycache__/
+
+# allure
+allure-reports/
+allure-results/
