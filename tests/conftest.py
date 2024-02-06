@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from seleniumbase import Driver
+from API.GSpread.allure_report_texts import Table
 
 
 def pytest_addoption(parser):
@@ -87,6 +88,11 @@ def cross_driver(request):
     driver.quit()
 
 
+@pytest.hookimpl(tryfirst=True)
+def pytest_sessionstart(session):
+    Table.load()
+
+
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
@@ -98,5 +104,6 @@ def pytest_runtest_makereport(item, call):
             now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             filename = f'{item.nodeid}_{now}.png'.replace('/', '_').replace('::', '__')
             allure.attach(driver.get_screenshot_as_png(), name=filename, attachment_type=allure.attachment_type.PNG)
+            allure.attach(driver.page_source, name='source HTML', attachment_type=allure.attachment_type.HTML)
         except:
             pass
