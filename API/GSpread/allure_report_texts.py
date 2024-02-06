@@ -5,9 +5,9 @@ class Table:
     records: dict = None
 
     @staticmethod
-    def load(sheet_title: str = 'Sheet1'):
+    def load():
         gc = gspread.service_account(filename='crids.json')
-        sheet = gc.open('Allure Report TextTable').worksheet(sheet_title)
+        sheet = gc.open('Allure Report TextTable').worksheet('Sheet1')
         Table.records = {k: v for (k, v) in sheet.get_all_values()}
 
     @staticmethod

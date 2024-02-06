@@ -1,4 +1,5 @@
 import allure
+from API.GSpread.allure_report_texts import Table as report_text_sheet
 
 from final_project.steps.BookAttractionSteps import AttractionSteps
 from final_project.data.AttractionData import AttractionData
@@ -7,7 +8,7 @@ from final_project.data.CommonData import Urls
 from assertpy import assert_that, soft_assertions
 
 
-@allure.epic("Main Test Cases")
+@allure.epic(report_text_sheet.get_value('main'))
 class TestBookingAttraction:
     def test_precondition(self, driver):
         attraction_steps = AttractionSteps(driver)
