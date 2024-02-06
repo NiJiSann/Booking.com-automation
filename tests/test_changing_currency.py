@@ -43,7 +43,7 @@ class TestChangingCurrency:
         ccs.choose_currency(website_currency)
 
         with soft_assertions():
-            assert_that(match_currency).contains(ccs.get_taxi_price_currency())
+            assert_that(ccs.get_taxi_price_currency(match_currency)).is_equal_to(expected)
 
     @pytest.mark.parametrize('website_currency, match_currency, expected', CurrencyData.currency_list)
     def test_flights_currency_change(self, driver, website_currency, match_currency, expected):
@@ -52,4 +52,4 @@ class TestChangingCurrency:
         ccs.choose_currency(website_currency)
 
         with soft_assertions():
-            assert_that(match_currency).contains(ccs.get_flight_price_currency())
+            assert_that(ccs.get_flight_price_currency(match_currency)).is_equal_to(expected)

@@ -11,6 +11,7 @@ from final_project.pages.AttractionsPage import AttractionsPage
 
 class ChangeCurrencySteps(Common):
     def choose_currency(self, currency):
+        time.sleep(1)
         self.wait_for(cp.CURRENCY_PICKER).click()
         self.click(ccp.get_currency_locator(currency))
 
@@ -87,7 +88,6 @@ class ChangeCurrencySteps(Common):
         if source.count(match[0]) > 1 or source.count(match[1]) > 1:
             return 'Currencies are matching'
         return 'Currencies are not matching'
-
 
     def get_flight_price_currency(self, match) -> str:
         time.sleep(1)
