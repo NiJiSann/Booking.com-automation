@@ -1,5 +1,3 @@
-import time
-
 import pytest
 from final_project.data.CommonData import Urls
 from assertpy import assert_that, soft_assertions
@@ -42,7 +40,6 @@ class TestChangingCurrency:
     def test_taxi_currency_change(self, driver_undetected, website_currency, match_currency, expected):
         ccs = ChangeCurrencySteps(driver_undetected)
         ccs.open_page(Urls.HOME_URL)
-        time.sleep(1)
         ccs.choose_currency(website_currency)
 
         with soft_assertions():

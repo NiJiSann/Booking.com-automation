@@ -77,8 +77,9 @@ class ChangeCurrencySteps(Common):
         input_dest.send_keys('Shibuya')
         time.sleep(5)
         input_dest.send_keys(Keys.ENTER)
+        time.sleep(1)
         self.click(ccp.SEARCH_TAXI)
-        time.sleep(15)
+        time.sleep(10)
         source = self.driver.page_source
         if source.count(match[0]) > 1 or source.count(match[1]) > 1:
             return 'Currencies are matching'
