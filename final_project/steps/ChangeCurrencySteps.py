@@ -69,19 +69,14 @@ class ChangeCurrencySteps(Common):
         time.sleep(1)
         self.click(cp.AIRPORT_TAXI)
         time.sleep(1)
-        try:
-            input_loc = self.wait_for(ccp.FROM_LOCATION_INPUT)
-            input_loc.click()
-            input_loc.send_keys('Haneda')
-            time.sleep(2)
-            input_loc.send_keys(Keys.ENTER)
-            input_dest = self.wait_for(ccp.TO_LOCATION_INPUT)
-            input_dest.click()
-            input_dest.send_keys('Shibuya')
-            time.sleep(2)
-            input_dest.send_keys(Keys.ENTER)
-        except:
-            pass
+        input_loc = self.wait_for(ccp.FROM_LOCATION_INPUT)
+        input_loc.send_keys('Haneda')
+        time.sleep(5)
+        input_loc.send_keys(Keys.ENTER)
+        input_dest = self.wait_for(ccp.TO_LOCATION_INPUT)
+        input_dest.send_keys('Shibuya')
+        time.sleep(5)
+        input_dest.send_keys(Keys.ENTER)
         self.click(ccp.SEARCH_TAXI)
         time.sleep(15)
         source = self.driver.page_source
