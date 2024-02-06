@@ -35,7 +35,7 @@ class MyCommonActions(Common):
                                    self._wait.until(ec.presence_of_element_located(locator)))
 
     def current_url(self):
-        time.sleep(2)
+        time.sleep(15)
         return self.driver.current_url
 
     def switch_to_next_tab(self):
