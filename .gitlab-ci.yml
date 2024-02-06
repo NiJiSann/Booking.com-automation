@@ -38,14 +38,14 @@ run_test:
         - poetry install --no-interaction --no-root
     script:
         # Execute Test Cases
-        - poetry run pytest tests/test_changing_currency.py -v --mode=ci --alluredir allure-results
+        - poetry run pytest -v --mode=ci --alluredir allure-results
     after_script:
         # Generate Allure Report as web html page project source
-#        - 'curl --location --output artifacts.zip --header "PRIVATE-TOKEN: $CI_CD_TOKEN"
-#          "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/$CI_COMMIT_BRANCH/download?job=pages"'
-#        - unzip artifacts.zip
-#        - cp -r public/history allure-results
-#        - rm -rf public
+        - 'curl --location --output artifacts.zip --header "PRIVATE-TOKEN: $CI_CD_TOKEN"
+          "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/$CI_COMMIT_BRANCH/download?job=pages"'
+        - unzip artifacts.zip
+        - cp -r public/history allure-results
+        - rm -rf public
         - allure generate -c allure-results -o allure-report
 #    Continue even if previous steps fail
     allow_failure: true
