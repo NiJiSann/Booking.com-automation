@@ -10,7 +10,6 @@ class AirportTaxiStep(MyCommonActions, AirportTaxiPage):
     def open_airport_taxi_page(self):
         time.sleep(3)
         self.click(self.AIRPORT_TAXI)
-        self.click(self.AIRPORT_TAXI)
 
     def change_currency(self):
         self.click(self.CURRENCY_PICKER)

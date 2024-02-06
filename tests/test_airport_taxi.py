@@ -14,6 +14,7 @@ class TestAirportTaxi:
             assert_that(airport_taxi.driver.current_url).contains("https://www.booking.com/index")
         airport_taxi.close_dialog_modal()
         airport_taxi.change_currency()
+        airport_taxi.close_dialog_modal()
         with soft_assertions():
             assert_that(airport_taxi.current_currency()).is_equal_to("USD")
 
