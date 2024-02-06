@@ -9,14 +9,15 @@ import time
 
 class AirportTaxiStep(MyCommonActions, AirportTaxiPage):
     def main_page_is_opened(self):
-        return self.find(self.MAIN_PAGE_TITLE)
+        return self.find(self.MAIN_PAGE_TITLE).is_displayed()
 
     def open_airport_taxi_page(self):
         time.sleep(3)
         self.click(self.AIRPORT_TAXI)
 
     def airport_taxi_page_is_opened(self):
-        return self.find(self.AIRPORT_PAGE_TITLE)
+        return self.find(self.AIRPORT_PAGE_TITLE).is_displayed()
+
 
     def change_currency(self):
         self.click(self.CURRENCY_PICKER)

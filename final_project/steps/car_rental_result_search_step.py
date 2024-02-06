@@ -6,7 +6,7 @@ from final_project.pages.car_rental_page import CarRentalSearchResultPage
 
 class CarRentalSearchResultStep(MyCommonActions, CarRentalSearchResultPage):
     def car_rental_result_search_is_opened(self):
-        time.sleep(2)
+        time.sleep(60)
         return self.find(self.CAR_RENTAL_PAGE_TITLE).is_displayed()
 
     def select_car_type(self):
