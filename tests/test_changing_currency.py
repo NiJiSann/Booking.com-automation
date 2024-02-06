@@ -1,5 +1,3 @@
-import time
-
 import allure
 import pytest
 from final_project.data.CommonData import Urls
@@ -75,15 +73,14 @@ class TestChangingCurrency:
     @allure.description(report_text_sheet.get_value('taxi_currency_desc'))
     def test_taxi_currency_change(self, driver_undetected, website_currency, match_currency, expected):
         ccs = ChangeCurrencySteps(driver_undetected)
-        # with allure.step(report_text_sheet.get_value('open_home')):
-        #     ccs.open_page(Urls.HOME_URL)
-        # with allure.step(report_text_sheet.get_value('change_currency')):
-        #     try:
-        time.sleep(1)
-        ccs.choose_currency(website_currency)
-            # except:
-                # ccs.driver.refresh()
-                # ccs.choose_currency(website_currency)
+        with allure.step(report_text_sheet.get_value('open_home')):
+            ccs.open_page(Urls.HOME_URL)
+        with allure.step(report_text_sheet.get_value('change_currency')):
+            try:
+                ccs.choose_currency(website_currency)
+            except:
+                ccs.driver.refresh()
+                ccs.choose_currency(website_currency)
 
         with soft_assertions(), allure.step(report_text_sheet.get_value('check_taxi_currency_change')):
             assert_that(ccs.get_taxi_price_currency(match_currency)).is_equal_to(expected)
