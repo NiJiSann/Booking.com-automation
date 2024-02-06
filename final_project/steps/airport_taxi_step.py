@@ -8,7 +8,8 @@ import time
 
 class AirportTaxiStep(MyCommonActions, AirportTaxiPage):
     def open_airport_taxi_page(self):
-        time.sleep(2)
+        time.sleep(3)
+        self.click(self.AIRPORT_TAXI)
         self.click(self.AIRPORT_TAXI)
 
     def change_currency(self):
