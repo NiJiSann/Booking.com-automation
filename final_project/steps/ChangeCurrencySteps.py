@@ -1,12 +1,9 @@
-import re
 import time
-
 from selenium.webdriver import Keys
 from final_project.steps.BookAttractionSteps import AttractionSteps
 from final_project.pages.CommopPage import CommonPage as cp
 from final_project.pages.ChangeCurrencyPage import ChangeCurrencyPage as ccp
 from final_project.steps.common_actions import Common
-from final_project.pages.AttractionsPage import AttractionsPage
 
 
 class ChangeCurrencySteps(Common):
