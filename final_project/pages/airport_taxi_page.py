@@ -24,7 +24,7 @@ class AirportTaxiPage(CommonPage):
     MINUTES_SELECTOR = (By.ID, "pickupMinute")
     CONFIRM_TIME_BTN = (By.XPATH, "//button[@data-test='rw-time-picker__confirm-button']")
     PASSENGERS_SELECTOR = (By.ID, "passengers")
-    SUBMIT_BUTTON = (By.XPATH, "//*[@class='ui-layout ui-layout--gutter-']//button[@name='searchButton']")
+    SUBMIT_BUTTON = (By.XPATH, "(//button[@name='searchButton'])[1]")
 
 
 class AirportTaxiDetailsPage(CommonPage):
@@ -38,7 +38,7 @@ class AirportTaxiDetailsPage(CommonPage):
                                         "//button[@data-testid='child-seat-modal__confirm']")
     COMMENT_TEXT_ARIA = (By.XPATH, "//textarea[@data-test='comments__input']")
     CONTINUE_BTN = (By.XPATH, "//button[@data-test='continue-action-bar__continue-button']")
-    SECOND_CAR_TYPE = (By.XPATH, '//*[@data-test="taxi-car-card-wrapper__car-card-container"]/div[2]')
+    SECOND_CAR_TYPE = (By.XPATH, '(//*[@data-test="taxi-car-card-wrapper__car-card-container"]/div)[2]')
 
 
 
