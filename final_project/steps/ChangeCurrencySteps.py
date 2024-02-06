@@ -71,8 +71,9 @@ class ChangeCurrencySteps(Common):
     def get_taxi_price_currency(self, match) -> str:
         ats = AirportTaxiStep(self.driver)
         ats.open_airport_taxi_page()
-        ats.enter_pick_up_location('Haneda')
-        ats.enter_destination_location('Shibuya')
+        ats.enter_pick_up_location('Dubai')
+        ats.enter_destination_location('Burj Khalifa')
+        ats.enter_date('20 April')
         ats.click_search_button()
         # time.sleep(1)
         # self.click(cp.AIRPORT_TAXI)
@@ -86,7 +87,7 @@ class ChangeCurrencySteps(Common):
         # self.click(ccp.SELECT_LINK)
         # time.sleep(1)
         # self.click(ccp.SEARCH_TAXI)
-        time.sleep(10)
+        time.sleep(20)
         source = self.driver.page_source
         if source.count(match[0]) > 1 or source.count(match[1]) > 1:
             return 'Currencies are matching'
