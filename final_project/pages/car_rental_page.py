@@ -4,7 +4,7 @@ from final_project.pages.CommopPage import CommonPage
 
 class CarRentalPage(CommonPage):
     # Locators car rental interface
-    CURRENCY_PICKER_NAME = (By.XPATH, '//button[@data-testid = "header-currency-picker-trigger"]/span')
+    CURRENCY_PICKER_NAME = (By.XPATH, '//button[@data-testid="header-currency-picker-trigger"]/span')
     SEARCH_FORM = (By.XPATH, "//*[@data-testid='cars-searchbox-envelope']")
     DROP_CAR_DIFFERENT_LOCATION_CHECKBOX = (By.CSS_SELECTOR, "label[for='searchbox-toolbox-drop-off-checkbox-desktop']")
     DROP_CAR_DIFFERENT_LOCATION_CHECKBOX_STATE = (By.XPATH, "//*[@data-testid='searchbox-container']")
