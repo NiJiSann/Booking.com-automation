@@ -5,7 +5,7 @@ from final_project.steps.common_actions import Common
 
 class MyCommonActions(Common):
     def fill(self, locator, value):
-        self.click(locator)
+        self.js_click(locator)
         self.find(locator).send_keys(value)
 
     def js_click(self, locator):
@@ -29,3 +29,6 @@ class MyCommonActions(Common):
     def go_to_element(self, locator):
         self.driver.execute_script("arguments[0].scrollIntoView();",
                                    self._wait.until(ec.presence_of_element_located(locator)))
+
+    def current_url_is_contain(self, url):
+        return self._wait.until(ec.url_contains(url))

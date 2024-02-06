@@ -11,7 +11,7 @@ class TestAirportTaxi:
         airport_taxi = AirportTaxiStep(driver_undetected)
         airport_taxi.open_page("https://www.booking.com")
         with soft_assertions():
-            assert_that(airport_taxi.driver.current_url).contains("https://www.booking.com/index")
+            assert_that(airport_taxi.current_url_is_contain("https://www.booking.com/index"))
         airport_taxi.close_dialog_modal()
         airport_taxi.change_currency()
         airport_taxi.close_dialog_modal()
@@ -22,7 +22,7 @@ class TestAirportTaxi:
         airport_taxi.open_airport_taxi_page()
         airport_taxi.change_language_to_en()
         with soft_assertions():
-            assert_that(airport_taxi.driver.current_url).contains("https://www.booking.com/taxi")
+            assert_that(airport_taxi.current_url_is_contain("https://www.booking.com/taxi"))
             assert_that(airport_taxi.search_form_is_visible()).is_true()
 
         airport_taxi.check_one_way()
@@ -51,7 +51,7 @@ class TestAirportTaxi:
 
         airport_taxi.click_search_button()
         with soft_assertions():
-            assert_that(airport_taxi.driver.current_url).contains("https://taxis.booking.com/search")
+            assert_that(airport_taxi.current_url_is_contain("https://taxis.booking.com/search"))
 
         airport_taxi_details_data = AirportTaxiDetailsDate()
         airport_taxi_details = AirportTaxiDetailsStep(driver_undetected)
@@ -66,4 +66,4 @@ class TestAirportTaxi:
 
         airport_taxi_details.click_continue_button()
         with soft_assertions():
-            assert_that(airport_taxi_details.driver.current_url).contains("https://taxis.booking.com/checkout")
+            assert_that(airport_taxi_details.current_url_is_contain("https://taxis.booking.com/checkout"))

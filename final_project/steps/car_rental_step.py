@@ -70,15 +70,15 @@ class CarRentalStep(MyCommonActions, CarRentalPage):
         day, month = date.split(" ")
         if day[0] == "0": day.replace("0", "")
         if kind == "pick_up":
-            self.click(self.PIC_UP_DATA_PICKER)
+            self.js_click(self.PIC_UP_DATA_PICKER)
         elif kind == "drop_off":
-            self.click(self.DROP_OFF_DATA_PICKER)
+            self.js_click(self.DROP_OFF_DATA_PICKER)
         while True:
             if month == self.driver.find_element(*self.DATA_PICKER_FIRST_MONTH_HEADER).text.split(" ")[0]:
                 break
             else:
                 if len(self.driver.find_elements(*self.DATA_PICKER_MONTH_SLIDER_BUTTON)) == 1:
-                    self.click(self.driver.find_element(*self.DATA_PICKER_MONTH_SLIDER_BUTTON))
+                    self.js_click(self.DATA_PICKER_MONTH_SLIDER_BUTTON)
                 else:
                     self.driver.find_elements(*self.DATA_PICKER_MONTH_SLIDER_BUTTON)[1].click()
         self.element_with_text(self.DATA_PICKER_DAY, day).click()
@@ -105,4 +105,4 @@ class CarRentalStep(MyCommonActions, CarRentalPage):
         return time_select.first_selected_option.text
 
     def click_search_button(self):
-        self.click(self.SUBMIT_BUTTON)
+        self.js_click(self.SUBMIT_BUTTON)
