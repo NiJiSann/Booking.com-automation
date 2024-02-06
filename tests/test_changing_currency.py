@@ -39,8 +39,8 @@ class TestChangingCurrency:
     #         assert_that(ccs.get_car_rental_price_currency(match_currency)).is_equal_to(expected)
 
     @pytest.mark.parametrize('website_currency, match_currency, expected', CurrencyData.currency_list)
-    def test_taxi_currency_change(self, driver, website_currency, match_currency, expected):
-        ccs = ChangeCurrencySteps(driver)
+    def test_taxi_currency_change(self, driver_undetected, website_currency, match_currency, expected):
+        ccs = ChangeCurrencySteps(driver_undetected)
         ccs.open_page(Urls.HOME_URL)
         time.sleep(1)
         ccs.choose_currency(website_currency)
