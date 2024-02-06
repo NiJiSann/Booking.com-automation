@@ -51,8 +51,8 @@ class TestUploadProfileImage:
             assert_that(us.get_status_note()).contains('Something went wrong')
 
     @pytest.mark.parametrize('width, height, expected', ImageData.image_size_list)
-    @allure.title(report_text_sheet.get_value('') + ': {width} x {height}')
-    @allure.description(report_text_sheet.get_value(''))
+    @allure.title(report_text_sheet.get_value('upload_image_title') + ': {width} x {height}')
+    @allure.description(report_text_sheet.get_value('upload_image_desc'))
     def test_upload_image(self, driver_undetected, width, height, expected):
         us = UploadProfileImageSteps(driver_undetected)
         with allure.step(report_text_sheet.get_value('upload_image')):
