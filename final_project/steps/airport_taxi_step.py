@@ -51,11 +51,12 @@ class AirportTaxiStep(MyCommonActions, AirportTaxiPage):
         self.click(self.DATA_PICKER)
         day, month = date.split(" ")
         if day[0] == "0": day.replace("0", "")
-        while True:
-            if month == self.driver.find_element(*self.DATA_PICKER_MONTH_CAPTION).text.split(" ")[0]:
-                break
+        month_is_displayed = False
+        while not month_is_displayed:
+            if month == self.find(self.DATA_PICKER_MONTH_CAPTION).text.split(" ")[0]:
+                month_is_displayed = True
             else:
-                self.click(self.driver.find_element(*self.DATA_PICKER_MONTH_NEXT_BUTTON))
+                self.click(self.find(self.DATA_PICKER_MONTH_NEXT_BUTTON))
         self.element_with_text(self.DATA_PICKER_DAY, day).click()
 
     def selected_pick_up_date(self):

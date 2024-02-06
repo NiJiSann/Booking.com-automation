@@ -15,7 +15,7 @@ class AirportTaxiPage(CommonPage):
     DESTINATION_LOCATION = (By.ID, 'dropoffLocation')
     DATA_PICKER = (By.XPATH, '//button[@aria-label="pickup date input field"]')
     DATA_PICKER_MONTH_NEXT_BUTTON = (By.XPATH, "//button[@data-test='rw-date-picker__btn--next']")
-    DATA_PICKER_MONTH_CAPTION = (By.XPATH, "//caption[@class='rw-c-date-picker__calendar-caption']")
+    DATA_PICKER_MONTH_CAPTION = (By.XPATH, "//*[@data-test='on-click-outside']//caption")
     SELECTED_PICK_UP_DATE = (By.XPATH, "//button[@data-test='rw-date-field__link--pickup']/span")
     DATA_PICKER_DAY = (By.XPATH, "//td/a[@class='rw-c-date-picker__calendar-cell--link']")
     TIME_PICKER = (By.XPATH, "//button[@aria-label='pickup time input field']")
