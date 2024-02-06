@@ -3,13 +3,14 @@ from selenium.webdriver import Keys
 from final_project.steps.BookAttractionSteps import AttractionSteps
 from final_project.pages.CommopPage import CommonPage as cp
 from final_project.pages.ChangeCurrencyPage import ChangeCurrencyPage as ccp
-from final_project.steps.common_actions import Common
+from final_project.steps.my_common_actions import MyCommonActions as Common
 from final_project.steps.airport_taxi_step import AirportTaxiStep
 from final_project.steps.car_rental_step import CarRentalStep
 
 
 class ChangeCurrencySteps(Common):
     def choose_currency(self, currency):
+        self.close_dialog_modal()
         time.sleep(2)
         self.click(cp.CURRENCY_PICKER)
         self.click(ccp.get_currency_locator(currency))
