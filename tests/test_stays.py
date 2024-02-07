@@ -50,7 +50,9 @@ class TestStays:
         rs.submit_password()
 
         # test
+        time.sleep(3)
         ss.clean_destination()
+        time.sleep(3)
         ss.enter_destination(expected_stay_destination)
         ss.click_check_in_date_button()
         ss.select_current_date_in_calendar(su.get_current_date())
