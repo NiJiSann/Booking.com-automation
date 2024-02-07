@@ -9,3 +9,4 @@ final_project/pages/__pycache__
 /tests/downloaded_files/
 /downloaded_files/
 API/RandomImage/__pycache__
+tests/downloaded_files
