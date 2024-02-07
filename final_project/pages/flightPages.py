@@ -1,0 +1,15 @@
+from selenium.webdriver.common.by import By
+class FlightMainPage:
+        NUMBER_OF_CUSTOMERS = (By.XPATH, '//div/div[1]/div/div[2]/section[2]/div/div/div/div/div/div[1]/div[1]/div[2]/div/span[2]')
+        TO_HOLDER = (By.XPATH, '//div[text()="To?"]')
+        DESTINATION_CITY_INPUT = (By.XPATH, '//input[@placeholder="To?"]')
+        SEARCH_FLIGHT = (By.XPATH, '//span[text()="Search"]/../../..')
+        FLIGHT_PRICE = (By.XPATH, '//span[@class="price-text"]')
+        TRIP_OPTIONS = (By.XPATH, '//span[contains(text(), "Round-trip")]')
+        FLIGHT_CLASS_DROPDOWN = (By.XPATH, '//span[contains(text(), "Economy")]')
+        DEPARTURE_CITY_INPUT = (By.ID, 'from-city')
+        Flight_page = (By.XPATH, '/html/body/div[1]/div[1]/div[2]/div[3]/div/div/div/a[2]')
+        SEARCH_BUTTON = (By.ID, 'search-button')
+        FLIGHTS = (By.ID, 'flights')
+        TO_HOLDER_INPUT = (By.XPATH, '/html/body/div[4]/div/div[2]/div[1]/div[2]/div/input')
+        PLAN_BUSSINES = (By.XPATH, '//span[contains(text(), "Business")]')
