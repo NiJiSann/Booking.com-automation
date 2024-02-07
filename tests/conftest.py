@@ -4,24 +4,30 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from seleniumbase import Driver, BaseCase
-
+from seleniumbase import Driver
 from API.GSpread.allure_report_texts import Table
 
 
+def pytest_addoption(parser):
+    # Parameters passed to the command line when running test
+    parser.addoption("--mode", action="store", help="Choose mode run (ci, local)", default="local")
+
+
 @pytest.fixture(scope="session")
-def driver():
+def driver(request):
+    mode = request.config.getoption("--mode")
     service = Service(executable_path=ChromeDriverManager().install())
     options = webdriver.ChromeOptions()
     options.add_experimental_option('detach', True)
-    options.add_argument('--headless')
+    # Change run mode
+    if mode == "ci":
+        options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument("--window-size=1920,1080")
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument("--disable-web-security")
     options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument(
-        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3")
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3")
     options.add_experimental_option("excludeSwitches", ['enable-automation'])
     download_path = r'downloads'
     prefs = {
@@ -36,14 +42,20 @@ def driver():
 
 
 @pytest.fixture(scope="session")
-def driver_undetected():
+def driver_undetected(request):
+    mode = request.config.getoption("--mode")
     options = {
+        'disable_gpu': True,
         'undetectable': True,
-        'headless2': True,
+        'agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                 '(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3',
         'd_width': 1920,
-        'disable_csp': True,
         'd_height': 1080
     }
+    # Change run mode
+    if mode == 'ci':
+        options['headless2'] = True
+
     m_driver = Driver(**options)
     yield m_driver
     m_driver.quit()
