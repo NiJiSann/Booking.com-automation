@@ -35,6 +35,7 @@ class TestUploadProfileImage:
             rs.submit_password()
         us = UploadProfileImageSteps(driver_undetected)
         with allure.step(report_text_sheet.get_value('open_set_image_page')):
+            time.sleep(1)
             us.open_set_image_page()
         with allure.step(report_text_sheet.get_value('open_image_upload_modal')):
             us.open_modal()
