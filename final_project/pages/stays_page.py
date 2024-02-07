@@ -11,6 +11,10 @@ class StaysPage(CommonPage):
     STAY_OPTION_ADDRESS = (By.XPATH, '//span[@data-testid="address"]')
     NEXT_PAGE_BUTTON = (By.XPATH, '//button[@aria-label="Next page"]')
     LAST_PAGE_TEXTBOX = (By.XPATH, '//div[@data-testid="pagination"]//ol//li[last()]')
+    STAY_OPTION_TITLE = (By.XPATH, '//div[@data-testid="title"]')
+    STAY_SAVE_BUTTON = (By.XPATH, '//button[@data-testid="wishlist-button"]')
+    STAY_DESTINATION_INPUT_CLEAR_BUTTON = (By.XPATH, '//span[@data-testid="input-clear"]')
+    ACCOUNT_PROFILE = (By.XPATH, '//button[@data-testid="header-profile"]')
 
     @staticmethod
     def get_calendar_date_textbox(date: str):

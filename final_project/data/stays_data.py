@@ -11,5 +11,9 @@ class StaysData:
     def get_stay_destinations():
         return ['Tashkent', 'Tbilisi', 'Samarkand', 'Dubai']
 
+    @staticmethod
+    def get_stay_destination():
+        return random.choice(['Tashkent', 'Tbilisi', 'Samarkand', 'Dubai'])
+
     def get_stay_duration(self):
         return random.choice(self.stay_durations)
