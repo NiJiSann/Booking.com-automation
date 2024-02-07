@@ -1,5 +1,7 @@
 from selenium.common import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver import Keys
+
 from final_project.steps.common_actions import Common
 from final_project.pages.stays_page import StaysPage
 from final_project.pages.CommopPage import CommonPage
@@ -25,7 +27,13 @@ class StaysStep(Common):
     @allure.step('Enter input for destination: {destination}.')
     def enter_destination(self, destination):
         time.sleep(5)
-        self.find(StaysPage.DESTINATION_INPUT_FIELD).send_keys(destination)
+        destination_input = self.find(StaysPage.DESTINATION_INPUT_FIELD)
+        time.sleep(1)
+        destination_input.send_keys(Keys.CONTROL + 'A')
+        destination_input.send_keys(Keys.BACKSPACE)
+        time.sleep(1)
+        destination_input.send_keys(destination)
+
         return self
 
     @allure.step('Clean Stay destination input field.')

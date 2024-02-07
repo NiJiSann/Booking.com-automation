@@ -14,16 +14,13 @@ class SignInSteps(Common):
     def fill_email(self, email: str):
         elem = self.find(sp.EMAIL_INPUT)
         elem.click()
-        elem.clear()
-        t = elem.text
-        time.sleep(1)
-        if not t == '':
+        elem.send_keys(Keys.CONTROL + 'A' + Keys.DELETE)
+        if elem.text != '':
             elem.send_keys(Keys.CONTROL + 'A')
-        time.sleep(1)
-        if self.get_text(sp.EMAIL_INPUT) == 'A':
-            elem.send_keys(Keys.CONTROL + 'A')
+            elem.send_keys(Keys.DELETE)
+        if elem.text == 'A':
             elem.send_keys(Keys.BACKSPACE)
-        time.sleep(1)
+        elem.clear()
         elem.send_keys(email)
 
     def get_email_error_note(self) -> str:
