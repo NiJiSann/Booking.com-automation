@@ -4,10 +4,11 @@ from final_project.pages.CommopPage import CommonPage
 
 class AirportTaxiPage(CommonPage):
     # Locators search airport taxi interface
+    MAIN_PAGE_TITLE = (By.XPATH, "//span[@data-testid='herobanner-title1']")
+    AIRPORT_PAGE_TITLE = (By.XPATH, "//h1/span")
     CURRENCY_PICKER_NAME = (By.XPATH, '//button[@data-testid = "header-currency-picker-trigger"]/span')
     SEARCH_FORM = (By.XPATH, "//*[@class='lp-hero__searchbox-container ']")
-    ONE_WAY_CHECKBOX = (By.XPATH, '//span[@data-test="returnJourneyNegative-label"]')
-    ONE_WAY_STATE = (By.XPATH, "//undefined['undefined']")
+    ONE_WAY_CHECKBOX = (By.XPATH, '//span[@data-test="returnJourneyNegative-label"]//span')
     ITEM_LIST_PICK_UP = (By.CSS_SELECTOR, "ul#pickupLocation-items")
     ITEM_LIST_PICK_DOWN = (By.CSS_SELECTOR, "ul#dropoffLocation-items")
     FIRST_ITEM = (By.CSS_SELECTOR, "[data-test='rw-dropdown-container'] li:nth-child(2) button")
@@ -31,6 +32,7 @@ class AirportTaxiPage(CommonPage):
 
 class AirportTaxiDetailsPage(CommonPage):
     # Locators details airport taxi page
+    AIRPORT_TAXI_DETAILS_TITLE = (By.XPATH, "//*[@data-test='taxi-car-card-wrapper__title']")
     ADD_REQUEST_CHILD_SEAT = (By.XPATH, "//button[@data-testid='child-seat-cta__request-link']")
     CHILD_CAR_SEAT = (By.XPATH, "//*[@data-testid='child-seat-selection__count']")
     PLUS_CHILD_SEAT = (By.XPATH,
@@ -44,6 +46,7 @@ class AirportTaxiDetailsPage(CommonPage):
 
 
 class AirportTaxiCheckoutPage(CommonPage):
+    TAXI_CHECKOUT_TITLE = (By.XPATH, "//*[@data-testid='passenger-details-form']/h2")
     FIRST_NAME = (By.XPATH, "//input[@data-testid='passenger-details-form__first-name-input']")
     LAST_NAME = (By.XPATH, "//input[@data-testid='passenger-details-form__last-name-input']")
     EMAIL = (By.XPATH, "//input[@data-testid='passenger-details-form__email-address-input']")

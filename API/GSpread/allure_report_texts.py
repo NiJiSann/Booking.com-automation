@@ -1,3 +1,4 @@
+import os
 import gspread
 
 
@@ -6,7 +7,7 @@ class Table:
 
     @staticmethod
     def load():
-        gc = gspread.service_account(filename='.\\Api\\GSpread\\crids.json')
+        gc = gspread.service_account(filename=os.path.join(os.getcwd(), "API/GSpread/crids.json"))
         sheet = gc.open('Allure Report TextTable').worksheet('Sheet1')
         Table.records = {k: v for (k, v) in sheet.get_all_values()}
 

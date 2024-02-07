@@ -26,8 +26,13 @@ class CarRentalPage(CommonPage):
     DATA_PICKER_DAY = (By.XPATH, "(//*[@data-testid='bui-calendar']//tbody)[1]//td")
     LANGUAGE_PICKER = (By.XPATH, "//button[@data-modal-id='language-selection']")
     ENGLISH_LANGUAGE = (By.XPATH, "(//*[@lang='en-gb'])[1]")
+    MAIN_PAGE_TITLE = (By.XPATH, "//span[@data-testid='herobanner-title1']")
+    RENTAL_PAGE_TITLE = (By.XPATH, "//*[@data-capla-component-boundary='b-cars-cars-lp/indexPage']//h1")
+
 
 
 class CarRentalSearchResultPage:
+    CAR_RENTAL_PAGE_TITLE = (By.XPATH, "//h1[@data-testid='page-title']")
+    DEAL_PAGE_TITLE = (By.XPATH, "//h1[@data-testid='progress-title']")
     PREMIUM_CAR = (By.XPATH, "//button[@aria-label='Show premium cars']")
     FIRST_CAR = (By.XPATH, "(//button[@aria-label='View deal'])[1]")
