@@ -1,9 +1,12 @@
-# idea
-.idea/
-
-# cache
-__pycache__/
-
-# allure
-allure-reports/
-allure-results/
+allure-reports
+tests/__pycache__
+final_project/steps/__pycache__
+API/GSpread/__pycache__
+final_project/data/__pycache__
+final_project/pages/__pycache__
+.idea
+**/*.jpg
+/tests/downloaded_files/
+/downloaded_files/
+API/RandomImage/__pycache__
+tests/downloaded_files

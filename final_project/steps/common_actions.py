@@ -9,7 +9,6 @@ class Common:
     def __init__(self, driver):
         self.driver: WebDriver = driver
         self._wait = WebDriverWait(self.driver, 20)
-        self.driver.implicitly_wait(5)
 
     def wait_for(self, locator) -> WebElement:
         return self._wait.until(ec.visibility_of_element_located(locator))
