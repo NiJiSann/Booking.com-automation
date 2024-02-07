@@ -20,6 +20,10 @@ class SignInSteps(Common):
         if not t == '':
             elem.send_keys(Keys.CONTROL + 'A')
         time.sleep(1)
+        if self.get_text(sp.EMAIL_INPUT) == 'A':
+            elem.send_keys(Keys.CONTROL + 'A')
+            elem.send_keys(Keys.BACKSPACE)
+        time.sleep(1)
         elem.send_keys(email)
 
     def get_email_error_note(self) -> str:
@@ -40,6 +44,10 @@ class SignInSteps(Common):
         time.sleep(1)
         if not t == '':
             elem.send_keys(Keys.CONTROL + 'A')
+        time.sleep(1)
+        if self.get_text(sp.PASSWORD) == 'A':
+            elem.send_keys(Keys.CONTROL + 'A')
+            elem.send_keys(Keys.BACKSPACE)
         time.sleep(1)
         elem.send_keys(password)
 
