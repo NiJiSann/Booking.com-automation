@@ -8,7 +8,7 @@ class CarRentalSearchResultStep(MyCommonActions, CarRentalSearchResultPage):
     @allure.step("Assert that car rental search result page is opened")
     def car_rental_result_search_is_opened(self):
         time.sleep(60)
-        return self.find(self.CAR_RENTAL_PAGE_TITLE).is_displayed()
+        return self.wait_for(self.CAR_RENTAL_PAGE_TITLE).is_displayed()
 
     @allure.step("Click a premium car type")
     def select_car_type(self):

@@ -25,6 +25,9 @@ class ChangeCurrencySteps(Common):
         try:
             input_loc = self.wait_for(ccp.STAY_LOCATION_INPUT)
             input_loc.click()
+            input_loc.send_keys(Keys.CONTROL + 'A')
+            input_loc.send_keys(Keys.DELETE)
+            time.sleep(1)
             input_loc.clear()
             time.sleep(1)
             input_loc.send_keys('Japan')
@@ -52,6 +55,10 @@ class ChangeCurrencySteps(Common):
     def get_car_rental_price_currency(self, match) -> str:
         crs = CarRentalStep(self.driver)
         crs.open_rental_page()
+        input_loc = self.wait_for(crs.PIC_UP_LOCATION_INPUT)
+        input_loc.send_keys(Keys.CONTROL + 'A')
+        input_loc.send_keys(Keys.DELETE)
+        time.sleep(1)
         crs.enter_pic_up_location('Florida')
         crs.click_search_button()
         source = self.driver.page_source
@@ -78,6 +85,9 @@ class ChangeCurrencySteps(Common):
             self.click(ccp.TO_HOLDER)
             input_loc = self.wait_for(ccp.TO_INPUT)
             input_loc.clear()
+            input_loc.send_keys(Keys.CONTROL + 'A')
+            input_loc.send_keys(Keys.DELETE)
+            time.sleep(1)
             input_loc.send_keys('Tokyo')
             time.sleep(2)
             input_loc.send_keys(Keys.ENTER)

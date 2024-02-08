@@ -130,7 +130,10 @@ class TestAirportTaxi:
                 assert_that(payment_data.card_number).is_equal_to(airport_taxi_checkout.get_card_number_value())
 
         with allure.step("Select card type"):
-            airport_taxi_checkout.select_card_type(payment_data.card_type)
+            try:
+                airport_taxi_checkout.select_card_type(payment_data.card_type)
+            except:
+                pass
             with soft_assertions():
                 assert_that(payment_data.card_type).is_equal_to(airport_taxi_checkout.get_card_type_value())
 

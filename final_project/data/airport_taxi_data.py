@@ -30,7 +30,7 @@ class UserData:
 @dataclass
 class PaymentData:
     first_name: str = faker.first_name()
-    card_number: str = "8600 1125 4789 5293 3"
+    card_number: str = "4002537426393261"
     card_type: str = "MasterCard"
     expiration_date: str = "12/24"
     cvc: str = "123"

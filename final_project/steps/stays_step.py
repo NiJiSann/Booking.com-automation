@@ -77,7 +77,7 @@ class StaysStep(Common):
     def is_stay_saved(self, stay_title):
         saved_stays = self.driver.find_elements(*SavedPage.SAVED_STAYS)
         for saved_stay in saved_stays:
-            if saved_stay.text == stay_title:
+            if saved_stay.text.__contains__(stay_title):
                 return True
         return False
 

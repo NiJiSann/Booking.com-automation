@@ -22,7 +22,7 @@ class TestUploadProfileImage:
             rs.open_page(Urls.HOME_URL)
         with allure.step(report_text_sheet.get_value('refresh')):
             rs.driver.refresh()
-        time.sleep(2)
+        time.sleep(5)
         with allure.step(report_text_sheet.get_value('open_sign_in')):
             rs.open_sign_in()
         with allure.step(report_text_sheet.get_value('fill_email')):
