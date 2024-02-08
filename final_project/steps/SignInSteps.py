@@ -9,15 +9,19 @@ from final_project.steps.common_actions import Common
 class SignInSteps(Common):
 
     def open_sign_in(self):
-        self.click(cp.SIGN_IN)
+        self.click(cp.REGISTER)
 
     def fill_email(self, email: str):
         elem = self.find(sp.EMAIL_INPUT)
-        elem.click()
-        elem.clear()
-        time.sleep(0.5)
         elem.send_keys(Keys.CONTROL + 'A')
-        time.sleep(0.5)
+        elem.send_keys(Keys.DELETE)
+        time.sleep(1)
+        if elem.text != '':
+            elem.send_keys(Keys.CONTROL + 'A')
+            elem.send_keys(Keys.DELETE)
+        if elem.text == 'A':
+            elem.send_keys(Keys.BACKSPACE)
+        elem.clear()
         elem.send_keys(email)
 
     def get_email_error_note(self) -> str:
@@ -32,11 +36,18 @@ class SignInSteps(Common):
 
     def fill_password(self, password):
         elem = self.wait_for(sp.PASSWORD)
-        elem.click()
-        elem.clear()
-        time.sleep(0.5)
         elem.send_keys(Keys.CONTROL + 'A')
-        time.sleep(0.5)
+        elem.send_keys(Keys.DELETE)
+        time.sleep(1)
+        t = elem.text
+        time.sleep(1)
+        if not t == '':
+            elem.send_keys(Keys.CONTROL + 'A')
+        time.sleep(1)
+        if self.get_text(sp.PASSWORD) == 'A':
+            elem.send_keys(Keys.CONTROL + 'A')
+            elem.send_keys(Keys.BACKSPACE)
+        time.sleep(1)
         elem.send_keys(password)
 
     def submit_password(self) -> str:

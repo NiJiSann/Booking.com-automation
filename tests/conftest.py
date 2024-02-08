@@ -36,6 +36,7 @@ def driver(request):
     }
     options.add_experimental_option('prefs', prefs)
     driver = webdriver.Chrome(options=options, service=service)
+    driver.implicitly_wait(10)
     yield driver
     driver.quit()
 
@@ -101,6 +102,14 @@ def pytest_runtest_makereport(item, call):
     if rep.when == 'call' and rep.failed:
         try:
             driver = item.funcargs['driver']
+            now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            filename = f'{item.nodeid}_{now}.png'.replace('/', '_').replace('::', '__')
+            allure.attach(driver.get_screenshot_as_png(), name=filename, attachment_type=allure.attachment_type.PNG)
+            allure.attach(driver.page_source, name='source HTML', attachment_type=allure.attachment_type.HTML)
+        except:
+            pass
+        try:
+            driver = item.funcargs['cross_driver']
             now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             filename = f'{item.nodeid}_{now}.png'.replace('/', '_').replace('::', '__')
             allure.attach(driver.get_screenshot_as_png(), name=filename, attachment_type=allure.attachment_type.PNG)
