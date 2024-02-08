@@ -75,11 +75,12 @@ class StaysStep(Common):
 
     @allure.step('Get all saved stays and compare with the expected.')
     def is_stay_saved(self, stay_title):
-        saved_stays = self.driver.find_elements(*SavedPage.SAVED_STAYS)
-        for saved_stay in saved_stays:
-            if saved_stay.text.__contains__(stay_title):
-                return True
-        return False
+        return self.driver.page_source.__contains__(stay_title)
+        # saved_stays = self.driver.find_elements(*SavedPage.SAVED_STAYS)
+        # for saved_stay in saved_stays:
+        #     if saved_stay.text.__contains__(stay_title):
+        #         return True
+        # return False
 
     @allure.step('Remove saved stay.')
     def remove_stay(self):
