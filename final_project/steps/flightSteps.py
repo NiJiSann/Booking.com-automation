@@ -14,16 +14,24 @@ class FlightSteps(Common):
 
     def fill_country(self, country:str):
         csame = self.find(fmp.TO_HOLDER_INPUT)
-        csame.click()
-        time.sleep(5)
         csame.send_keys(country)
-        csame.send_keys(Keys.RETURN)
+        csame.send_keys(Keys.ENTER)
+        time.sleep(10)
 
-    def open_plan_dropdown(self):
-        op = self.find(fmp.FLIGHT_CLASS_DROPDOWN)
-        op.click()
 
-    def select_plan_dropdown(self):
-        sp = self.find(fmp.PLAN_BUSSINES)
-        sp.click()
+    def searchBtn(self):
+        btn = self.find(fmp.SEARCH_FLIGHT)
+        btn.click()
         time.sleep(5)
+
+    def check_best(self):
+        bstbtn = self.find(fmp.Best)
+        bstbtn.click()
+
+    def check_cheapest(self):
+        bstbtn = self.find(fmp.cheapest)
+        bstbtn.click()
+
+    def check_quickest(self):
+        bstbtn = self.find(fmp.Quickest)
+        bstbtn.click()

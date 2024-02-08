@@ -6,23 +6,33 @@ from final_project.steps.flightSteps import FlightSteps
 import pytest
 from final_project.data.CommonData import Urls
 
-@allure.epic("Main Epic")  # Replace "Main Epic" with the correct epic title or a dynamic value
+@allure.epic("Main Epic")
 class TestBookingFlight:
+    @allure.title('opening main url')
+    @allure.description('step opens main page and shows details of page')
     def test_precondition(self, driver):
-        attraction_steps = FlightSteps(driver)
-        attraction_steps.open_page(Urls.HOME_URL)
-        attraction_steps.driver.refresh()
+        Flight_steps = FlightSteps(driver)
+        Flight_steps.open_page(Urls.HOME_URL)
+        Flight_steps.driver.refresh()
 
+    @allure.title('booking Flight')
+    @allure.description('step opens Flight page to order an flight to choosen country')
     @pytest.mark.parametrize('city', FlightTown.flight_tokio)  # Ensure this is a list
     def test_search(self, driver, city):
         fs = FlightSteps(driver)
         fs.open_flight_page()
         fs.click_country()
-        time.sleep(2)
         fs.fill_country(city)
+        time.sleep(4)
+        fs.searchBtn()
 
-    def select_plan(self, driver):
-        sp = FlightSteps(driver)
-        sp.open_plan_dropdown()
-        sp.select_plan_dropdown()
-        time.sleep(5)
+    @allure.title('check given varaints')
+    @allure.description('function clicks nav bar steps to check various recommendation of web-intreface')
+    def checkBars(self, driver):
+        chb = FlightSteps(driver)
+        chb.check_best()
+        time.sleep(2)
+        chb.check_cheapest()
+        time.sleep(2)
+        chb.check_quickest()
+        time.sleep(2)

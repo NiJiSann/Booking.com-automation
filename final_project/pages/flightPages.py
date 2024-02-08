@@ -13,3 +13,7 @@ class FlightMainPage:
         FLIGHTS = (By.ID, 'flights')
         TO_HOLDER_INPUT = (By.XPATH, '/html/body/div[4]/div/div[2]/div[1]/div[2]/div/input')
         PLAN_BUSSINES = (By.XPATH, '//span[contains(text(), "Business")]')
+        SelectT = (By.XPATH, '//div[text()="TYO"]')
+        cheapest = (By.XPATH, '//span[contains(text(), "Cheapest")]')
+        Best = (By.XPATH, '//span[contains(text(), "Best")]')
+        Quickest = (By.XPATH, '//span[contains(text(), "Quickest")]')
