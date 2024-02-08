@@ -38,8 +38,13 @@ class StaysStep(Common):
 
     @allure.step('Clean Stay destination input field.')
     def clean_destination(self):
-        self.find(StaysPage.STAY_DESTINATION_INPUT_CLEAR_BUTTON).click()
-        return self
+        try:
+            self.find(StaysPage.STAY_DESTINATION_INPUT_CLEAR_BUTTON).click()
+            return self
+        except NoSuchElementException:
+            print('>>> LOG: Clean Stay Destination is not displayed. NoSuchElementException.')
+        except TimeoutException:
+            print('>>> LOG: Clean Stay Destination is not displayed. TimeoutException')
 
     @allure.step('Click "check-in date" button.')
     def click_check_in_date_button(self):
