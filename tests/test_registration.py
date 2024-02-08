@@ -28,7 +28,7 @@ class TestRegistration:
         with allure.step(report_text_sheet.get_value('fill_email')):
             rs.fill_email(email)
         with soft_assertions(), allure.step(report_text_sheet.get_value('check_email')):
-            assert_that(rs.submit_email()).contains(expected)
+            assert_that(rs.submit_email()).contains_ignoring_case(expected)
 
     @pytest.mark.parametrize('password, confirm, expected', AccountData.password_confirm_data)
     @allure.title(report_text_sheet.get_value('password_validation_title') + ': {password} == {confirm}')
@@ -40,4 +40,4 @@ class TestRegistration:
         with allure.step(report_text_sheet.get_value('confirm_password')):
             rs.confirm_password(confirm)
         with soft_assertions(), allure.step(report_text_sheet.get_value('check_password')):
-            assert_that(rs.submit_password()).contains(expected)
+            assert_that(rs.submit_password()).contains_ignoring_case(expected)

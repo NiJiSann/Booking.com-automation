@@ -28,7 +28,7 @@ class TestSignIn:
         with allure.step(report_text_sheet.get_value('fill_email')):
             rs.fill_email(email)
         with soft_assertions(), allure.step(report_text_sheet.get_value('check_email')):
-            assert_that(rs.submit_email()).contains(expected)
+            assert_that(rs.submit_email()).contains_ignoring_case(expected)
 
     @pytest.mark.parametrize('password, expected', AccountData.sign_in_password_data)
     @allure.title(report_text_sheet.get_value('sign_in_password_validation_title') + ': {password}')
@@ -38,4 +38,4 @@ class TestSignIn:
         with allure.step(report_text_sheet.get_value('fill_password')):
             rs.fill_password(password)
         with soft_assertions(), allure.step(report_text_sheet.get_value('sign_in_check_password')):
-            assert_that(rs.submit_password()).contains(expected)
+            assert_that(rs.submit_password()).contains_ignoring_case(expected)

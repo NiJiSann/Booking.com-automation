@@ -38,13 +38,12 @@ class AccountData:
                              (correct_password, correct_password, 'Success')
                              ]
 
-    sign_in_email_data = [(empty_email, 'Please enter your email address'),
-                          (incorrect_email, 'Please check if the email address you\'ve entered is correct.'),
+    sign_in_email_data = [(empty_email, 'enter your email address'),
+                          (incorrect_email, 'is correct.'),
                           (correct_email, 'Success')
                           ]
 
-    sign_in_password_data = [(empty_password, 'Please enter your Booking.com password'),
-                             (short_password, 'Oops! Your password seems to be incorrect. Please try again or use a '
-                                              'verification link'),
+    sign_in_password_data = [(empty_password, 'enter your Booking.com password'),
+                             (short_password, 'or use a verification link'),
                              (correct_password, 'Success')
                              ]

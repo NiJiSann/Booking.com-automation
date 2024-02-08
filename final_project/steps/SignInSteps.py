@@ -13,7 +13,9 @@ class SignInSteps(Common):
 
     def fill_email(self, email: str):
         elem = self.find(sp.EMAIL_INPUT)
-        elem.click()
+        elem.send_keys(Keys.CONTROL + 'A')
+        elem.send_keys(Keys.DELETE)
+        time.sleep(1)
         if elem.text != '':
             elem.send_keys(Keys.CONTROL + 'A')
             elem.send_keys(Keys.DELETE)
@@ -34,8 +36,9 @@ class SignInSteps(Common):
 
     def fill_password(self, password):
         elem = self.wait_for(sp.PASSWORD)
-        elem.click()
-        elem.clear()
+        elem.send_keys(Keys.CONTROL + 'A')
+        elem.send_keys(Keys.DELETE)
+        time.sleep(1)
         t = elem.text
         time.sleep(1)
         if not t == '':
