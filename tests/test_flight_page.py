@@ -1,10 +1,10 @@
 import time
-
 import allure
 from final_project.data.flightBooking import FlightTown
 from final_project.steps.flightSteps import FlightSteps
 import pytest
 from final_project.data.CommonData import Urls
+from assertpy import assert_that
 
 @allure.epic("Main Epic")
 class TestBookingFlight:
@@ -16,23 +16,26 @@ class TestBookingFlight:
         Flight_steps.driver.refresh()
 
     @allure.title('booking Flight')
-    @allure.description('step opens Flight page to order an flight to choosen country')
-    @pytest.mark.parametrize('city', FlightTown.flight_tokio)  # Ensure this is a list
-    def test_search(self, driver, city):
+    @allure.description('step opens Flight page to order a flight to chosen country')
+    @pytest.mark.parametrize('city, expected', [(FlightTown.flight_tokio, 'Success')])
+    def test_search(self, driver, city, expected):
         fs = FlightSteps(driver)
         fs.open_flight_page()
         fs.click_country()
         fs.fill_country(city)
-        time.sleep(4)
+        assert_that(fs.submit_country()).contains(expected)
         fs.searchBtn()
 
-    @allure.title('check given varaints')
-    @allure.description('function clicks nav bar steps to check various recommendation of web-intreface')
-    def checkBars(self, driver):
+
+    @allure.title('check given variants')
+    @allure.description('function clicks nav bar steps to check various recommendations of web-interface')
+    @pytest.mark.parametrize('expected', ['Best', 'Cheapest', 'Quickest'])
+    def test_check_bars(self, driver, expected):
         chb = FlightSteps(driver)
-        chb.check_best()
-        time.sleep(2)
-        chb.check_cheapest()
-        time.sleep(2)
-        chb.check_quickest()
+        if expected == 'Best':
+            chb.check_best()
+        elif expected == 'Cheapest':
+            chb.check_cheapest()
+        elif expected == 'Quickest':
+            chb.check_quickest()
         time.sleep(2)
