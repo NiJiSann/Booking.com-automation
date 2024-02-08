@@ -8,7 +8,7 @@ class CommonPage:
     ATTRACTIONS = (By.ID, 'attractions')
     AIRPORT_TAXI = (By.ID, 'airport_taxis')
     REGISTER = (By.XPATH, '//a[@data-testid = "header-sign-up-button"]')
-    SIGN_IN = (By.XPATH, '//a[@data-testid = "header-sign-in-button"]')
+    SIGN_IN = (By.XPATH, '//span[text() = "Sign in"]')
     YOUR_ACCOUNT = (By.XPATH, '//button[@data-testid = "header-profile"]')
     SAVED = (By.XPATH, '//*[@id=":rc:"]/div/div/div/div/ul/li[6]')
     USD_CURRENCY = (By.XPATH, "//button[@data-testid='selection-item']//span/div[text()='USD']")
