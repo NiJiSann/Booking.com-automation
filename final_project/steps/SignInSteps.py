@@ -9,7 +9,7 @@ from final_project.steps.common_actions import Common
 class SignInSteps(Common):
 
     def open_sign_in(self):
-        self.click(cp.SIGN_IN)
+        self.click(cp.REGISTER)
 
     def fill_email(self, email: str):
         elem = self.find(sp.EMAIL_INPUT)

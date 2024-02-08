@@ -62,6 +62,7 @@ class TestStays:
         expected_saved_stay = ss.get_stay_option_title()
         ss.open_account_profile()
         ss.open_saved_page()
+        time.sleep(5)
         assert_that(ss.is_stay_saved(expected_saved_stay)).is_true()
 
         # post-conditions

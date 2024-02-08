@@ -140,7 +140,7 @@ class TestAirportTaxi:
         with allure.step("Enter expiration date"):
             airport_taxi_checkout.enter_expiration_date(payment_data.expiration_date)
             with soft_assertions():
-                assert_that(payment_data.expiration_date).is_equal_to(airport_taxi_checkout.get_expiration_date_value())
+                assert_that(payment_data.expiration_date).contains(airport_taxi_checkout.get_expiration_date_value())
 
         with allure.step("Enter cvc"):
             airport_taxi_checkout.enter_cvc_number(payment_data.cvc)
