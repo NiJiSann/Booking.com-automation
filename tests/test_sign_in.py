@@ -15,8 +15,7 @@ class TestSignIn:
         rs = SignInSteps(driver_undetected)
         with allure.step(report_text_sheet.get_value('open_home')):
             rs.open_page(Urls.HOME_URL)
-        with allure.step(report_text_sheet.get_value('refresh')):
-            rs.driver.refresh()
+            rs.close_dialog_modal()
         with allure.step(report_text_sheet.get_value('open_sign_in')):
             rs.open_sign_in()
 

@@ -16,6 +16,7 @@ class TestChangingCurrency:
         ccs = ChangeCurrencySteps(driver_undetected)
         with allure.step(report_text_sheet.get_value('open_home')):
             ccs.open_page(Urls.HOME_URL)
+            ccs.close_dialog_modal()
 
     @pytest.mark.parametrize('website_currency, match_currency, expected', CurrencyData.currency_list)
     @allure.title(report_text_sheet.get_value('stays_currency_title') + ': {website_currency}')
@@ -25,11 +26,7 @@ class TestChangingCurrency:
         with allure.step(report_text_sheet.get_value('open_home')):
             ccs.open_page(Urls.HOME_URL)
         with allure.step(report_text_sheet.get_value('change_currency')):
-            try:
-                ccs.choose_currency(website_currency)
-            except:
-                ccs.driver.refresh()
-                ccs.choose_currency(website_currency)
+            ccs.choose_currency(website_currency)
 
         with soft_assertions(), allure.step(report_text_sheet.get_value('check_stay_currency_change')):
             assert_that(ccs.get_stays_price_currency(match_currency)).is_equal_to(expected)
@@ -42,11 +39,7 @@ class TestChangingCurrency:
         with allure.step(report_text_sheet.get_value('open_home')):
             ccs.open_page(Urls.HOME_URL)
         with allure.step(report_text_sheet.get_value('change_currency')):
-            try:
-                ccs.choose_currency(website_currency)
-            except:
-                ccs.driver.refresh()
-                ccs.choose_currency(website_currency)
+            ccs.choose_currency(website_currency)
 
         with soft_assertions(), allure.step(report_text_sheet.get_value('check_attaction_currency_change')):
             assert_that(ccs.get_attraction_price_currency(match_currency)).is_equal_to(expected)
@@ -59,11 +52,7 @@ class TestChangingCurrency:
         with allure.step(report_text_sheet.get_value('open_home')):
             ccs.open_page(Urls.HOME_URL)
         with allure.step(report_text_sheet.get_value('change_currency')):
-            try:
-                ccs.choose_currency(website_currency)
-            except:
-                ccs.driver.refresh()
-                ccs.choose_currency(website_currency)
+            ccs.choose_currency(website_currency)
 
         with soft_assertions(), allure.step(report_text_sheet.get_value('check_rent_car_currency_change')):
             assert_that(ccs.get_car_rental_price_currency(match_currency)).is_equal_to(expected)
@@ -76,11 +65,7 @@ class TestChangingCurrency:
         with allure.step(report_text_sheet.get_value('open_home')):
             ccs.open_page(Urls.HOME_URL)
         with allure.step(report_text_sheet.get_value('change_currency')):
-            try:
-                ccs.choose_currency(website_currency)
-            except:
-                ccs.driver.refresh()
-                ccs.choose_currency(website_currency)
+            ccs.choose_currency(website_currency)
 
         with soft_assertions(), allure.step(report_text_sheet.get_value('check_taxi_currency_change')):
             assert_that(ccs.get_taxi_price_currency(match_currency)).is_equal_to(expected)
@@ -88,16 +73,12 @@ class TestChangingCurrency:
     @pytest.mark.parametrize('website_currency, match_currency, expected', CurrencyData.currency_list)
     @allure.title(report_text_sheet.get_value('flights_currency_title') + ': {website_currency}')
     @allure.description(report_text_sheet.get_value('flights_currency_desc'))
-    def test_flights_currency_change(self, driver, website_currency, match_currency, expected):
-        ccs = ChangeCurrencySteps(driver)
+    def test_flights_currency_change(self, driver_undetected, website_currency, match_currency, expected):
+        ccs = ChangeCurrencySteps(driver_undetected)
         with allure.step(report_text_sheet.get_value('open_home')):
             ccs.open_page(Urls.HOME_URL)
         with allure.step(report_text_sheet.get_value('change_currency')):
-            try:
-                ccs.choose_currency(website_currency)
-            except:
-                ccs.driver.refresh()
-                ccs.choose_currency(website_currency)
+            ccs.choose_currency(website_currency)
 
         with soft_assertions(), allure.step(report_text_sheet.get_value('check_flight_currency_change')):
             assert_that(ccs.get_flight_price_currency(match_currency)).is_equal_to(expected)

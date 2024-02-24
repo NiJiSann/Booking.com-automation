@@ -22,17 +22,25 @@ class Common:
         self._wait.until(ec.element_to_be_clickable(locator)).click()
 
     def submit(self, locator):
+        time.sleep(1)
         self._wait.until(ec.element_to_be_clickable(locator)).submit()
 
     def get_text(self, locator):
-        time.sleep(2)
         elem = self.find(locator)
         return elem.text
 
+    def wait_for_page(self):
+        self._wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
+
     def open_page(self, url):
         self.driver.get(url)
-        self._wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
-        time.sleep(1)
+        self.wait_for_page()
+
+    def close_dialog_modal(self):
+        try:
+            self.click(("css selector", "[role='dialog'] [type='button']"))
+        except:
+            pass
 
     def scroll_to_elem(self, locator):
         visible = False

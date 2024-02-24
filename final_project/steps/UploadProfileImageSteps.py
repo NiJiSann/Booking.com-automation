@@ -16,11 +16,12 @@ class UploadProfileImageSteps(Common):
         self.click(pdp.SET_PROFILE_IMAGE_MODAL)
 
     def upload_image(self, width, height):
-        path = Image.download(width, height)
+        path = Image.download('img.jpg', width, height)
         self.wait_for(pdp.IMAGE_INPUT).send_keys(path)
 
-    def upload_non_image(self, file_path):
-        self.wait_for(pdp.IMAGE_INPUT).send_keys(file_path)
+    def upload_non_image(self):
+        path = Image.download('img.bin', 100, 100)
+        self.wait_for(pdp.IMAGE_INPUT).send_keys(path)
 
     def get_status_note(self) -> str:
         status = self.wait_for(pdp.STATUS_NOTE).text

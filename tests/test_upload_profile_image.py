@@ -20,8 +20,7 @@ class TestUploadProfileImage:
         rs = SignInSteps(driver_undetected)
         with allure.step(report_text_sheet.get_value('open_home')):
             rs.open_page(Urls.HOME_URL)
-        with allure.step(report_text_sheet.get_value('refresh')):
-            rs.driver.refresh()
+            rs.close_dialog_modal()
         with allure.step(report_text_sheet.get_value('open_sign_in')):
             rs.open_sign_in()
         with allure.step(report_text_sheet.get_value('fill_email')):
@@ -34,7 +33,6 @@ class TestUploadProfileImage:
             rs.submit_password()
         us = UploadProfileImageSteps(driver_undetected)
         with allure.step(report_text_sheet.get_value('open_set_image_page')):
-            time.sleep(3)
             us.open_set_image_page()
         with allure.step(report_text_sheet.get_value('open_image_upload_modal')):
             us.open_modal()
@@ -44,7 +42,7 @@ class TestUploadProfileImage:
     def test_upload_non_image(self, driver_undetected):
         us = UploadProfileImageSteps(driver_undetected)
         with allure.step(report_text_sheet.get_value('upload_image')):
-            us.upload_non_image(ImageData.non_image_type_file)
+            us.upload_non_image()
         with allure.step(report_text_sheet.get_value('save_image')):
             us.save_image()
         with soft_assertions(), allure.step(report_text_sheet.get_value('get_image_status')):

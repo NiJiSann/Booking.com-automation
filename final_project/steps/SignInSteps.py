@@ -40,14 +40,11 @@ class SignInSteps(Common):
         elem.send_keys(Keys.DELETE)
         time.sleep(1)
         t = elem.text
-        time.sleep(1)
         if not t == '':
             elem.send_keys(Keys.CONTROL + 'A')
-        time.sleep(1)
         if self.get_text(sp.PASSWORD) == 'A':
             elem.send_keys(Keys.CONTROL + 'A')
             elem.send_keys(Keys.BACKSPACE)
-        time.sleep(1)
         elem.send_keys(password)
 
     def submit_password(self) -> str:

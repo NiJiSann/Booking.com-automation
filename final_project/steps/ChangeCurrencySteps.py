@@ -3,14 +3,11 @@ from selenium.webdriver import Keys
 from final_project.steps.BookAttractionSteps import AttractionSteps
 from final_project.pages.CommopPage import CommonPage as cp
 from final_project.pages.ChangeCurrencyPage import ChangeCurrencyPage as ccp
-from final_project.steps.my_common_actions import MyCommonActions as Common
-from final_project.steps.airport_taxi_step import AirportTaxiStep
-from final_project.steps.car_rental_step import CarRentalStep
+from final_project.steps.common_actions import Common
 
 
 class ChangeCurrencySteps(Common):
     def choose_currency(self, currency):
-        self.close_dialog_modal()
         time.sleep(2)
         self.click(cp.CURRENCY_PICKER)
         self.click(ccp.get_currency_locator(currency))
@@ -53,26 +50,31 @@ class ChangeCurrencySteps(Common):
         return 'Currencies are not matching'
 
     def get_car_rental_price_currency(self, match) -> str:
-        crs = CarRentalStep(self.driver)
-        crs.open_rental_page()
-        input_loc = self.wait_for(crs.PIC_UP_LOCATION_INPUT)
-        input_loc.send_keys(Keys.CONTROL + 'A')
-        input_loc.send_keys(Keys.DELETE)
-        time.sleep(1)
-        crs.enter_pic_up_location('Florida')
-        crs.click_search_button()
+        self.click(cp.CAR_RENTAL)
+        input_loc = self.wait_for(ccp.PICK_UP_LOCATION_INPUT)
+        input_loc.click()
+        input_loc.send_keys('Florida')
+        time.sleep(2)
+        input_loc.send_keys(Keys.ENTER)
+        self.click(ccp.SEARCH_CAR)
+        self.wait_for(ccp.AVAILABLE_TEXT)
         source = self.driver.page_source
         if source.count(match[0]) > 1 or source.count(match[1]) > 1:
             return 'Currencies are matching'
         return 'Currencies are not matching'
 
     def get_taxi_price_currency(self, match) -> str:
-        ats = AirportTaxiStep(self.driver)
-        ats.open_airport_taxi_page()
-        ats.enter_pick_up_location('Dubai')
-        ats.enter_destination_location('Burj Khalifa')
-        ats.enter_date('20 April')
-        ats.click_search_button()
+        self.click(cp.AIRPORT_TAXI)
+        input_loc = self.wait_for(ccp.FROM_LOCATION_INPUT)
+        input_loc.send_keys('Haneda')
+        time.sleep(2)
+        input_loc.send_keys(Keys.ENTER)
+        input_dest = self.wait_for(ccp.TO_LOCATION_INPUT)
+        input_dest.send_keys('Shibuya')
+        time.sleep(2)
+        input_dest.send_keys(Keys.ENTER)
+        self.click(ccp.SEARCH_TAXI)
+        self.wait_for(ccp.JOURNEY_TEXT)
         source = self.driver.page_source
         if source.count(match[0]) > 0 or source.count(match[1]) > 0:
             return 'Currencies are matching'
@@ -95,7 +97,7 @@ class ChangeCurrencySteps(Common):
             pass
 
         self.click(ccp.SEARCH_FLIGHT)
-        time.sleep(15)
+        self.wait_for(ccp.BEST_TEXT)
         source = self.driver.page_source
         if source.count(match[0]) > 1 or source.count(match[1]) > 1:
             return 'Currencies are matching'
